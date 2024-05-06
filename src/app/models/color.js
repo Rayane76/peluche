@@ -10,7 +10,6 @@ const SizeSchema = new Schema({
 const ColorSchema = new Schema({
     name: String,
     sizes: [SizeSchema],
-    mainImage: String,
     images: [String]
 });
 

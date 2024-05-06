@@ -2,8 +2,8 @@
 
 import { useState,useEffect } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 
 
@@ -35,7 +35,7 @@ export default function SpecCategorie({ params }){
             pathname: "/admin/categorie/" + id + "/edit",
             query: { name: categorie.name },
           }}>Edit Categorie Informations</Link>
-         <button onClick={()=>handleAdd}>Add Article</button>
+         <button onClick={()=>router.push("/admin/categorie/" + id + "/new")}>Add Article</button>
           </div>
           : 
           <div>
@@ -51,7 +51,7 @@ export default function SpecCategorie({ params }){
             pathname: "/admin/categorie/" + id + "/edit",
             query: { name:  categorie.name},
           }}>Edit Categorie Informations</Link>
-         <button onClick={()=>handleAdd}>Add Article</button>
+         <button onClick={()=>router.push("/admin/categorie/" + id + "/new")}>Add Article</button>
           </div>
          }
        </div>
