@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import connectToDB from "@/app/database";
 import { NextResponse } from "next/server";
-import Article from "@/app/models/article";
 import Categorie from "@/app/models/categorie";
 
 
