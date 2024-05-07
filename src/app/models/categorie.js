@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// import Article from "./article";
 
 
 const Schema = mongoose.Schema;
