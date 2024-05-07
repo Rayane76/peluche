@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 
 
-export default function ColorAdd(){
+export default function ColorAdd({ onValueChange }){
 
     const [color,setColor] = useState({
         name: "",
@@ -34,10 +34,6 @@ export default function ColorAdd(){
             setColor((prev)=>({...prev,sizes:[]}));
         }
     }
-
-    useEffect(()=>{
-     console.log(color);
-    },[color])
 
     const [sizeEnteredName,setSizeEnteredName] = useState("");
 
@@ -181,9 +177,6 @@ export default function ColorAdd(){
         }
     ])
 
-
-    const [colorImages,setColorImages] = useState([]);
-
     const handleChangeSize = (e, sizeName) => {
         const { value } = e.target;
         setColor(prevState => {
@@ -207,10 +200,24 @@ export default function ColorAdd(){
         }
     }
 
+    const handleSubmitColor = (e) => {
+        e.preventDefault();
+        if(color.name != "" && color.sizes.length > 0 && color.images.length > 0){
+            onValueChange(color);
+            setColor({
+                name: "",
+                sizes: [],
+                images: []
+            });
+            setTypeSize("");
+        }
+    }
+
     return(
+        
         <div className='border border-dark p-4 w-25'>
         <label>Color Name : </label>
-        <input onChange={(e)=>setColor((prev)=>({...prev,[e.target.name]:e.target.value}))} type="text" name="name" required></input>
+        <input onChange={(e)=>setColor((prev)=>({...prev,[e.target.name]:e.target.value}))} value={color.name} type="text" name="name" required></input>
         <br></br>
         <div className='d-flex align-items-center'>
         <label>Color Sizes : </label>
@@ -270,6 +277,7 @@ export default function ColorAdd(){
          <CldUploadButton onSuccess={(e)=>handleSuccess(e)} uploadPreset="jcejqihu" />        
 
         </div>
+        <button onClick={(e)=>handleSubmitColor(e)}>Submit Color</button>
         </div>
     )
 }

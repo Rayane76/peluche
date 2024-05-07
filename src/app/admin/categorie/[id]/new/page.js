@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ColorAdd from './ColorAdd';
 
 
@@ -12,13 +12,13 @@ export default function New(){
         colors: [],
     })
 
-    const [colors,setColors] = ([]);
-
     const handleNewColor = (color)=>{
-         setColors((prev)=>([...prev,color]));
+         setNewArticle((prev)=>({...prev,colors:[...prev.colors,color]}));
     }
 
-    const [numberOfColors,setNumberOfColors] = useState(1);
+    useEffect(()=>{
+       console.log(newArticle);
+    },[newArticle])
 
     return(
       <div>
@@ -30,15 +30,26 @@ export default function New(){
         <input onChange={(e)=>setNewArticle((prev)=>({...prev,[e.target.name]: Number(e.target.value)}))} type="number" name="price" required></input>
         <br></br>
         <label>Colors : </label>
-        {numberOfColors > 1 ? (
-                Array.from({ length: numberOfColors }).map((_, index) => (
-                    <ColorAdd />
-                ))
-            ) : (
-                <ColorAdd />
-            )}
-        
-        <button onClick={()=>setNumberOfColors((prev)=>prev + 1)}>Add Color</button>
+        <ColorAdd onValueChange={handleNewColor} /> 
+        {newArticle.colors.length === 0 ? "" :
+        newArticle.colors.map((color,index)=>{
+            return(
+                <div key={index} className='border border-dark p-4 w-25'>
+                <label>Color: {color.name}</label>
+                 {color.sizes.map((size,i)=>{
+                    return(
+                        <label key={i}>{size.name} : {size.stock}</label>
+                    )
+                 })}
+                 {color.images.map((image,j)=>{
+                    return(
+                        <img key={j} src={image} style={{width:"50px",height:"50px"}}></img>
+                    )
+                 })} 
+                </div>
+            )
+        })
+        }
         </form>
       </div>
     )
