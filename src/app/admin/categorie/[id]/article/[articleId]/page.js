@@ -3,6 +3,8 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import { CldUploadButton } from 'next-cloudinary';
 import ColorAdd from "../../new/ColorAdd";
+import isEqual from 'lodash/isEqual';
+import { useRouter } from "next/navigation";
 
 
 
@@ -10,6 +12,7 @@ export default function SpecArticle({ params }){
     
     const categorie = params.id;
     const art = params.articleId;
+    const router = useRouter();
 
     const [article,setArticle] = useState(null);
 
@@ -18,16 +21,16 @@ export default function SpecArticle({ params }){
      },[]);
 
 
-     useEffect(()=>{
-        console.log(article);
-     },[article])
-
-     let InitialArticle = {};
- 
+    //  useEffect(()=>{
+    //     console.log(article);
+    //  },[article])
+      
+     const [initialArticle,setInitialArticle] = useState(null);
+    
      const getArticle = async () => {
          const result = await axios.get(`/api/product/getProduct?categorie=${categorie}&article=${art}`);
          setArticle(result.data.data);
-         InitialArticle = result.data.data;
+         setInitialArticle(result.data.data);
      }
 
      const [addColorClicked,setAddColorClicked] = useState(false);
@@ -107,7 +110,37 @@ export default function SpecArticle({ params }){
     const addClrBtn = document.getElementById("addClrBtn");
     addClrBtn.style.display = 'none'
    }
+
+   const handleSaveChanges = async (e) => {
+    const areEqual = isEqual(article, initialArticle);
+    if(areEqual === false){
+        const res = await axios.post("/api/product/updateProduct",{id: categorie , article: article})
+        .then((res)=>{
+            if(res.data.success === true){
+              router.back();
+            }
+            else{
+                console.log("error")
+            }
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+   }
      
+   const handleDeleteArticle = async (e)=>{
+    const res = await axios.delete(`/api/product/deleteProduct?categorie=${categorie}&article=${art}`)
+    .then((response)=>{
+       if(response.data.success === true){
+       router.back();
+       }
+       else{
+        console.log("error")
+       }
+    }).catch((err)=>{
+        console.log(err);
+    })
+   }
 
     return(
         <div>
@@ -154,7 +187,8 @@ export default function SpecArticle({ params }){
         <button id="addClrBtn" onClick={()=>handleClickAddColor()}>Add Color</button>
          {addColorClicked && <ColorAdd onValueChange={handleNewColor} />}
 
-        <button>Save Changes</button>
+        <button onClick={(e)=>handleSaveChanges(e)}>Save Changes</button>
+        <button onClick={(e)=>handleDeleteArticle(e)}>Delete Article</button>
          </div>
          }
         </div>
