@@ -12,8 +12,13 @@ export default function New(){
         colors: [],
     })
 
+    const [colors,setColors] = ([]);
+
+    const handleNewColor = (color)=>{
+         setColors((prev)=>([...prev,color]));
+    }
+
     const [numberOfColors,setNumberOfColors] = useState(1);
-    let i = 0;
 
     return(
       <div>

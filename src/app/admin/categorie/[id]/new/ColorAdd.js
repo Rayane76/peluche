@@ -5,31 +5,56 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { CldUploadButton } from 'next-cloudinary';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
 export default function ColorAdd(){
-    
 
-    function isEmpty(obj) {
-        return Object.keys(obj).length === 0;
+    const [color,setColor] = useState({
+        name: "",
+        sizes: [],
+        images: [],
+    })
+
+    const [typeSize,setTypeSize] = useState("");
+
+    const handleTypeSize = (e)=>{
+        setTypeSize(e.target.value);
+        if(e.target.value === "xsValues"){
+            setColor((prev)=>({...prev,sizes:xsArr}));
+        }
+        else if(e.target.value === "numberValues"){
+            setColor((prev)=>({...prev,sizes:numArr}));
+        }
+        else if(e.target.value === "complexValues"){
+            setColor((prev)=>({...prev,sizes:cpxArr}));
+        }
+        else if(e.target.value === "manually"){
+            setColor((prev)=>({...prev,sizes:[]}));
+        }
     }
 
-    const [customSize,setCustomSize] = useState([]);
+    useEffect(()=>{
+     console.log(color);
+    },[color])
 
     const [sizeEnteredName,setSizeEnteredName] = useState("");
 
     const handleAddSizeName = (e)=>{
         if(sizeEnteredName != ""){
 
-        const valueExists = customSize.some(obj => Object.values(obj).includes(sizeEnteredName));
+        const valueExists = color.sizes.some(obj => Object.values(obj).includes(sizeEnteredName));
         if(!valueExists){    
-        setCustomSize((prev)=>([...prev,{name: sizeEnteredName, stock : 0}]))
+        setColor(prevState => ({
+            ...prevState,
+            sizes: [...prevState.sizes, { name: sizeEnteredName, stock: 0 }]
+        }));
+        
         }
         setSizeEnteredName("");
-        }
     }
+}
 
 
     const [xsArr,setXsArr] = useState([
@@ -159,72 +184,33 @@ export default function ColorAdd(){
 
     const [colorImages,setColorImages] = useState([]);
 
-    const [typeSize,setTypeSize] = useState("");
+    const handleChangeSize = (e, sizeName) => {
+        const { value } = e.target;
+        setColor(prevState => {
+            return {
+                ...prevState,
+                sizes: prevState.sizes.map(size => {
+                    if (size.name === sizeName) {
+                        return { ...size, stock: parseInt(value) };
+                    }
+                    return size;
+                })
+            };
+        });
+    };
+
 
     
-    const [color,setColor] = useState({
-        name: "",
-        sizes: [],
-        images: [],
-    })
-
-
-
-    const handleChangeSizeXs = (e,arr)=>{
-        const { name, value } = e.target;
-        setXsArr(prevArr => {
-            return prevArr.map(size => {
-                if (size.name === name) {
-                    return { ...size, stock: parseInt(value) };
-                }
-                return size;
-            });
-        });
+    const handleSuccess = (e) => {
+        if(e.event === "success"){
+            setColor((prev)=>({...prev,images:[...prev.images,e.info.secure_url]}));
+        }
     }
-
-    const handleChangeSizeNum = (e,arr)=>{
-        const { name, value } = e.target;
-        setNumArr(prevArr => {
-            return prevArr.map(size => {
-                if (size.name === name) {
-                    return { ...size, stock: parseInt(value) };
-                }
-                return size;
-            });
-        });
-    }
-
-    const handleChangeSizeCpx = (e,arr)=>{
-        const { name, value } = e.target;
-        setCpxArr(prevArr => {
-            return prevArr.map(size => {
-                if (size.name === name) {
-                    return { ...size, stock: parseInt(value) };
-                }
-                return size;
-            });
-        });
-    }
-
-    const handleChangeSizeCustom = (e,arr)=>{
-        const { name, value } = e.target;
-        setCustomSize(prevArr => {
-            return prevArr.map(size => {
-                if (size.name === name) {
-                    return { ...size, stock: parseInt(value) };
-                }
-                return size;
-            });
-        });
-    }
-
-
-
 
     return(
         <div className='border border-dark p-4 w-25'>
         <label>Color Name : </label>
-        <input onChange={(e)=>setColor((prev)=>({...prev,[e.target.name]:e.target.value}))} type="text" name="color" required></input>
+        <input onChange={(e)=>setColor((prev)=>({...prev,[e.target.name]:e.target.value}))} type="text" name="name" required></input>
         <br></br>
         <div className='d-flex align-items-center'>
         <label>Color Sizes : </label>
@@ -234,7 +220,7 @@ export default function ColorAdd(){
         <Select
           value={typeSize}
           label="Age"
-          onChange={(e)=>setTypeSize(e.target.value)}
+          onChange={(e)=>handleTypeSize(e)}
         >
           <MenuItem value="xsValues">XS-S-...-XXl</MenuItem>
           <MenuItem value="numberValues">38-...-45</MenuItem>
@@ -244,55 +230,34 @@ export default function ColorAdd(){
       </FormControl>
     </Box>
     </div>
-    {typeSize != "" && 
-      typeSize === "xsValues" ? 
-      
-      <>
-      {xsArr.map((size,index)=>{
+    {   typeSize !== "manually" ? 
+        
+    <>
+      {color.sizes.map((size,index)=>{
         return(
         <div key={index} className='d-flex'>
         <label>{size.name} : </label>
-        <input type='number' onChange={(e)=>handleChangeSizeXs(e)} required name={size.name}></input>
+        <input type='number' onChange={(e)=>handleChangeSize(e,size.name)} required name={size.name}></input>
       </div>       
         )                         
       })}
       </>
-      : typeSize === "numberValues" ?
-      <>
-      {numArr.map((size,index)=>{
-        return(
-        <div key={index} className='d-flex'>
-        <label>{size.name} : </label>
-        <input type='number' onChange={(e)=>handleChangeSizeNum(e)} required name={size.name}></input>
-      </div>       
-        )                         
-      })}
-      </>
-      : typeSize === "complexValues" ? 
-      <>
-      {cpxArr.map((size,index)=>{
-        return(
-        <div key={index} className='d-flex'>
-        <label>{size.name} : </label>
-        <input type='number' onChange={(e)=>handleChangeSizeCpx(e)} required name={size.name}></input>
-      </div>       
-        )                         
-      })}
-      </>
-      : typeSize === "manually" ?
+        
+      :
+      typeSize === "manually" ?
       <>
         <div className='d-flex align-items-center'>
         <label>Add size name : </label>
         <input onChange={(e)=>setSizeEnteredName(e.target.value)} value={sizeEnteredName} required type='text'></input>
         <button onClick={(e)=>handleAddSizeName(e)}>+</button>
         </div>
-        {customSize.length === 0 ? "" 
+        {color.sizes.length === 0 ? "" 
         : (
-                customSize.map((size, index) => {
+                color.sizes.map((size, index) => {
                     return(
                     <div key={index} className='d-flex align-items-center'>
                    <label>{size.name} : </label>
-                   <input onChange={(e)=>handleChangeSizeCustom(e)} type='number' name={size.name} required></input>
+                   <input onChange={(e)=>handleChangeSize(e,size.name)} type='number' name={size.name} required></input>
                     </div>
                     )
                 })
@@ -302,7 +267,7 @@ export default function ColorAdd(){
     }
         <div>
          <label>Add Images : </label>   
-         <CldUploadButton onUploadAdded={(e)=>setColorImages((prev)=>[...prev,e.info.file.name])} uploadPreset="jcejqihu" />        
+         <CldUploadButton onSuccess={(e)=>handleSuccess(e)} uploadPreset="jcejqihu" />        
 
         </div>
         </div>
