@@ -1,10 +1,16 @@
 'use client'
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import ColorAdd from './ColorAdd';
+import { useRouter } from 'next/navigation';
 
 
 
-export default function New(){
+export default function New({ params }){
+
+    const router = useRouter();
+
+    const id = params.id;
 
     const [newArticle,setNewArticle] = useState({
         name: "",
@@ -20,10 +26,30 @@ export default function New(){
        console.log(newArticle);
     },[newArticle])
 
+
+    const handleSubmitArticle = async (e) => {
+         e.preventDefault();
+         if(newArticle.colors.length > 0){
+         const res = await axios.post("/api/product/createProduct",{
+            id: id,
+            newArticle: newArticle
+         }).then((res)=>{
+            if(res.data.success === true){
+                 router.back();
+            }
+            else{
+                console.log("error")
+            }
+         }).catch((err)=>{
+            console.log(err);
+         })
+        }
+    }
+
     return(
       <div>
         <h1>Add new article</h1>
-        <form>
+        <form onSubmit={(e)=>handleSubmitArticle(e)}>
         <label>Article name : </label>
         <input onChange={(e)=>setNewArticle((prev)=>({...prev,[e.target.name]:e.target.value}))} type="text" name="name" required></input>
         <label>Article price : </label>
@@ -50,6 +76,7 @@ export default function New(){
             )
         })
         }
+        {newArticle.colors.length > 0 && <button type='submit'>Submit Article</button>}
         </form>
       </div>
     )

@@ -1,19 +1,31 @@
-import mongoose from "mongoose";
-import Color from "./color";
+// import mongoose from "mongoose";
+// // import Color from "./color";
 
 
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 
 
-
-const ArticleSchema = new Schema({
-    name: String,
-    price: Number,
-    colors: [{ type: Schema.Types.ObjectId, ref: 'Color' }]
-});
+// const SizeSchema = new Schema({
+//   name: String,
+//   stock: Number
+// });
 
 
-const Article =
-  mongoose.models.Article || mongoose.model("Article", ArticleSchema);
+// const ColorSchema = new Schema({
+//   name: String,
+//   sizes: [SizeSchema],
+//   images: [String]
+// });
 
-export default Article;
+
+// const ArticleSchema = new Schema({
+//     name: String,
+//     price: Number,
+//     colors: [ColorSchema]
+// });
+
+
+// const Article =
+//   mongoose.models.Article || mongoose.model("Article", ArticleSchema);
+
+// export default Article;

@@ -217,7 +217,7 @@ export default function ColorAdd({ onValueChange }){
         
         <div className='border border-dark p-4 w-25'>
         <label>Color Name : </label>
-        <input onChange={(e)=>setColor((prev)=>({...prev,[e.target.name]:e.target.value}))} value={color.name} type="text" name="name" required></input>
+        <input onChange={(e)=>setColor((prev)=>({...prev,[e.target.name]:e.target.value}))} value={color.name} type="text" name="name"></input>
         <br></br>
         <div className='d-flex align-items-center'>
         <label>Color Sizes : </label>
@@ -244,7 +244,7 @@ export default function ColorAdd({ onValueChange }){
         return(
         <div key={index} className='d-flex'>
         <label>{size.name} : </label>
-        <input type='number' onChange={(e)=>handleChangeSize(e,size.name)} required name={size.name}></input>
+        <input type='number' onChange={(e)=>handleChangeSize(e,size.name)} name={size.name}></input>
       </div>       
         )                         
       })}
@@ -255,7 +255,7 @@ export default function ColorAdd({ onValueChange }){
       <>
         <div className='d-flex align-items-center'>
         <label>Add size name : </label>
-        <input onChange={(e)=>setSizeEnteredName(e.target.value)} value={sizeEnteredName} required type='text'></input>
+        <input onChange={(e)=>setSizeEnteredName(e.target.value)} value={sizeEnteredName} type='text'></input>
         <button onClick={(e)=>handleAddSizeName(e)}>+</button>
         </div>
         {color.sizes.length === 0 ? "" 
@@ -264,7 +264,7 @@ export default function ColorAdd({ onValueChange }){
                     return(
                     <div key={index} className='d-flex align-items-center'>
                    <label>{size.name} : </label>
-                   <input onChange={(e)=>handleChangeSize(e,size.name)} type='number' name={size.name} required></input>
+                   <input onChange={(e)=>handleChangeSize(e,size.name)} type='number' name={size.name}></input>
                     </div>
                     )
                 })

@@ -1,19 +1,19 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema;
+// import mongoose from "mongoose";
+// const Schema = mongoose.Schema;
 
 
-const SizeSchema = new Schema({
-    name: String,
-    stock: Number
-});
+// const SizeSchema = new Schema({
+//     name: String,
+//     stock: Number
+// });
 
-const ColorSchema = new Schema({
-    name: String,
-    sizes: [SizeSchema],
-    images: [String]
-});
+// const ColorSchema = new Schema({
+//     name: String,
+//     sizes: [SizeSchema],
+//     images: [String]
+// });
 
-const Color =
-  mongoose.models.Color || mongoose.model("Color", ColorSchema);
+// const Color =
+//   mongoose.models.Color || mongoose.model("Color", ColorSchema);
 
-export default Color;
+// export default Color;
