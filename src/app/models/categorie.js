@@ -28,6 +28,15 @@ const CategorySchema = new Schema({
       type: String,
       required: true,
     },
+    gender: {
+      type: String,
+      enum: ["Men","Women","Kids","Unisex"],
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
     articles: [ArticleSchema]
 });
 

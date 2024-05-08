@@ -11,6 +11,7 @@ export default function SpecCategorie({ params }){
 
     const router = useRouter();
 
+    const gender = params.gender;
     const id = params.id;
 
     const [categorie,setCategorie] = useState(null);
@@ -31,27 +32,21 @@ export default function SpecCategorie({ params }){
           <div>
           <h1>{categorie.name}</h1>
           <h2>No Articles yet !</h2>
-          <Link  href={{
-            pathname: "/admin/categorie/" + id + "/edit",
-            query: { name: categorie.name },
-          }}>Edit Categorie Informations</Link>
-         <button onClick={()=>router.push("/admin/categorie/" + id + "/new")}>Add Article</button>
+          <Link  href={"/admin/" + gender + "/categorie/" + id + "/edit"}>Edit Categorie Informations</Link>
+         <button onClick={()=>router.push("/admin/" + gender + "/categorie/" + id + "/new")}>Add Article</button>
           </div>
           : 
           <div>
           {categorie.articles.map((article)=>{
             return(
                 <div>
-                  <a href={"/admin/categorie/" + id + "/article/" + article._id}>{article.name}</a>
+                  <a href={"/admin/" + gender + "/categorie/" + id + "/article/" + article._id}>{article.name}</a>
                 </div>
             )
           })
           }
-          <Link  href={{
-            pathname: "/admin/categorie/" + id + "/edit",
-            query: { name:  categorie.name},
-          }}>Edit Categorie Informations</Link>
-         <button onClick={()=>router.push("/admin/categorie/" + id + "/new")}>Add Article</button>
+          <Link  href={"/admin/" + gender + "/categorie/" + id + "/edit"}>Edit Categorie Informations</Link>
+         <button onClick={()=>router.push("/admin/" + gender + "/categorie/" + id + "/new")}>Add Article</button>
           </div>
          }
        </div>

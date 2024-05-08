@@ -5,16 +5,27 @@ import Categorie from "@/app/models/categorie";
 
 
 export async function GET(req){
-
-  const searchParams = req.nextUrl.searchParams;
-  const gender = searchParams.get("gender");
-
     try {
         await connectToDB();
-        const result = await Categorie.find({gender: gender});
+   
+        const searchParams = req.nextUrl.searchParams;
+        const id = searchParams.get("id");
+        
+
+        const result = await Categorie.findOne({_id: id});
+ 
+        let res = {};
+        if(result){
+        res = {
+            name: result.name,
+            gender: result.gender,
+            image: result.image,
+            _id: res._id,
+        }
+    }
 
         return NextResponse.json({
-            data: result,
+            data: res,
             success: true,
             message: "success !",
           });
@@ -28,6 +39,4 @@ export async function GET(req){
           message: "Something went wrong!",
         });
       }
-    
-
 }

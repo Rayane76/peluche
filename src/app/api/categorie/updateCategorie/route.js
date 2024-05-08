@@ -11,10 +11,9 @@ export async function PATCH(req){
         const searchParams = req.nextUrl.searchParams;
         const id = searchParams.get("id");
         const newName = searchParams.get("newName");
+        const newImage = searchParams.get("newImage");
 
-        
-
-        const result = await Categorie.updateOne({_id: id}, {name: newName});
+        const result = await Categorie.updateOne({_id: id}, {name: newName , image: newImage});
 
         return NextResponse.json({
             success: true,

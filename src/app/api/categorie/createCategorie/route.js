@@ -14,7 +14,9 @@ export async function POST(req){
          const {categorie} = await req.json();
 
         const result = await Categorie.insertMany({
-            name: categorie,
+            name: categorie.name,
+            gender: categorie.gender,
+            image: categorie.image,
             articles: [],
         });
         
