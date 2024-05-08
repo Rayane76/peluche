@@ -20,6 +20,8 @@ const ArticleSchema = new Schema({
     name: String,
     price: Number,
     colors: [ColorSchema]
+},{
+  timestamps: true,
 });
 
 
@@ -38,6 +40,8 @@ const CategorySchema = new Schema({
       required: true,
     },
     articles: [ArticleSchema]
+},{
+  timestamps: true,
 });
 
 const Categorie =

@@ -20,7 +20,7 @@ export default function Gender({ params }){
     },[]);
 
     const getCategories = async () => {
-        const result = await axios.get(`/api/categorie/getAllCategories?gender=${gender}`);
+        const result = await axios.get(`/api/categorie/getAllCategoriesName?gender=${gender}`);
         console.log(result.data.data);
         setCategories(result.data.data);
     }

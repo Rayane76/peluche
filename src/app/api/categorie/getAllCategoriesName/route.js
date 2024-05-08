@@ -12,6 +12,7 @@ export async function GET(req){
     try {
         await connectToDB();
 
+        
         let result = null;
         if(gender === "Men" || gender === "Women" || gender === "Unisex"){
             result = await Categorie.find({ $or: [ { gender: gender }, { gender: "Unisex" } ] })
@@ -20,8 +21,17 @@ export async function GET(req){
           result = await Categorie.find({gender: gender});
         }
 
+        let res= [];
+
+        if(result){
+            result.map((categorie)=>{
+                res.push({name: categorie.name, gender: categorie.gender, image: categorie.image, _id: categorie._id});
+            })
+        }
+
+
         return NextResponse.json({
-            data: result,
+            data: res,
             success: true,
             message: "success !",
           });
