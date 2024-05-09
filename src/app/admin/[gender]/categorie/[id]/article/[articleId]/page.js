@@ -21,9 +21,9 @@ export default function SpecArticle({ params }){
      },[]);
 
 
-    //  useEffect(()=>{
-    //     console.log(article);
-    //  },[article])
+     useEffect(()=>{
+        console.log(article);
+     },[article])
       
      const [initialArticle,setInitialArticle] = useState(null);
     

@@ -55,6 +55,7 @@ export default function New({ params }){
         <label>Article price : </label>
         <input onChange={(e)=>setNewArticle((prev)=>({...prev,[e.target.name]: Number(e.target.value)}))} type="number" name="price" required></input>
         <br></br>
+        <br></br>
         <label>Colors : </label>
         <ColorAdd onValueChange={handleNewColor} /> 
         {newArticle.colors.length === 0 ? "" :
