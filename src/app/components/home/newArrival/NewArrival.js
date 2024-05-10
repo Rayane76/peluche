@@ -12,7 +12,6 @@ export default function NewArrival(){
 
     const getArticles = async () => {
         const res = await axios.get("/api/product/getLastProducts");
-        console.log(res);
     }
 
     return(

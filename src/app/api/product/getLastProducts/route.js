@@ -21,11 +21,11 @@ export async function GET(req){
 
         dates.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-        const first10Products = dates.slice(0, 10);
+        // const first10Products = dates.slice(0, 10);
 
 
         return NextResponse.json({
-            data: first10Products,
+            data: dates,
             success: true,
             message: "Article Added"
           });
