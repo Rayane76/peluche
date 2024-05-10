@@ -1,0 +1,39 @@
+.categoriesSection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 50px;
+}
+
+.categorie{
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 40%;
+}
+
+.bottom-left{
+    position: absolute;
+    bottom: 28px;
+    left: 26px;
+    margin: 0;
+    color: white;
+}
+
+.categorieImage{
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    /* object-fit: contain; */
+}
+
+@media screen and (max-width: 768px){
+    .categorie{
+      width: 90%;
+    }
+    .categoriesSection{
+        gap: 20px;
+    }
+}

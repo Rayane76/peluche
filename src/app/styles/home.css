@@ -8,5 +8,10 @@
 
 .hero{
     background-color:  #062143 ;
+    margin-bottom: 70px;
+}
+
+@media screen and (max-width: 768px) {
+   .hero{ margin-bottom: 30px;}
 }
 /* #062044 */

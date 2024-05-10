@@ -25,10 +25,10 @@ export default async function Home() {
   return (
     <>
      <Navbar allArticles={categories} />
-     <div className="hero">
+     <section className="hero">
      <Image src="/home1.png" width={0} height={0} alt="home" sizes="100vw" className="homeImg"></Image>
-     </div>
-     <Categories />
+     </section>
+     <Categories categories={categories} />
      <NewArrival />
     </>
   );
