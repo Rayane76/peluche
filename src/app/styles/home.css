@@ -1,0 +1,12 @@
+.homeImg{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 82.5vh;
+    object-fit: contain;
+}
+
+.hero{
+    background-color:  #062143 ;
+}
+/* #062044 */

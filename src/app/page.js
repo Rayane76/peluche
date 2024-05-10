@@ -1,6 +1,8 @@
 import NewArrival from "./components/home/newArrival/NewArrival";
 import Navbar from "./components/navbar/Navbar";
-import Hero from "./components/home/heroSection/Hero";
+import Image from "next/image";
+import "./styles/home.css"
+import Categories from "./components/home/categoriesSection/CategoriesSection";
 
 
 
@@ -23,7 +25,10 @@ export default async function Home() {
   return (
     <>
      <Navbar allArticles={categories} />
-     <Hero />
+     <div className="hero">
+     <Image src="/home1.png" width={0} height={0} alt="home" sizes="100vw" className="homeImg"></Image>
+     </div>
+     <Categories />
      <NewArrival />
     </>
   );
