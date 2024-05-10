@@ -14,12 +14,22 @@ async function getCategories(){
   return categories.data;
 }
 
+async function getNewArrivals(){
+    const res = await import("./api/product/getLastProducts/route");
+  
+    const categories = await (await res.GET()).json();
+  
+    return categories.data;
+  }
+
 
 export default async function Home() {
 
   const categories = await getCategories();
 
-  // console.log(categories);
+  const newArrivals = await getNewArrivals();
+
+
 
 
   return (
@@ -29,7 +39,7 @@ export default async function Home() {
      <Image src="/home1.png" width={0} height={0} alt="home" sizes="100vw" className="homeImg"></Image>
      </section>
      <Categories categories={categories} />
-     <NewArrival />
+     <NewArrival newArrivals={newArrivals} />
     </>
   );
 }

@@ -5,12 +5,20 @@
     width: 100%;
     align-items: center;
     gap: 50px;
+    margin-bottom: 50px;
 }
 
 .categorie{
     position: relative;
     text-align: center;
     color: white;
+    height: 400px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.a{
+    height: 400px;
     width: 40%;
 }
 
@@ -20,17 +28,14 @@
     left: 26px;
     margin: 0;
     color: white;
+    font-weight: bolder;
+    font-size: 25px;
 }
 
-.categorieImage{
-    object-fit: contain;
-    height: 100%;
-    width: 100%;
-    /* object-fit: contain; */
-}
+
 
 @media screen and (max-width: 768px){
-    .categorie{
+    .a{
       width: 90%;
     }
     .categoriesSection{

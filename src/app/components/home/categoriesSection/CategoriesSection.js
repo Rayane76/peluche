@@ -8,12 +8,14 @@ export default function Categories(props){
         <section className="categoriesSection">
           {props.categories.map((categorie)=>{
             return(
+                <a className="a" href={"/" + categorie.gender + "/" + categorie.name}>
                 <div className="categorie">
-                <Image src={categorie.image} width={0} height={0} sizes="100vw" className="categorieImage" alt={categorie.name} />
+                <Image src={categorie.image} fill={true} alt={categorie.name} />
                 <h6 className="bottom-left">
-                    {categorie.name}
+                    {categorie.name.toUpperCase()}
                 </h6>
                 </div>
+                </a>
             )
           })}
         </section>

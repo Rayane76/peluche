@@ -8,9 +8,7 @@ import { CiSearch } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { PiHandbag } from "react-icons/pi";
-import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import Box from '@mui/material/Box';
 import Image from "next/image";
 
 export default function Navbar(props) {
@@ -81,7 +79,7 @@ export default function Navbar(props) {
               </Col>
               <Col className="col-3 header-col__right">
                 <div className="new-header__area -right">
-                  <div className="customer">
+                  {/* <div className="customer">
                     <a
                       className="new-header__link -customer"
                       href="/"
@@ -98,7 +96,7 @@ export default function Navbar(props) {
                             Log In / Sign Up
                           </a>
                         </div>
-                        {/* <div class="customer__orderTracking">
+                         <div class="customer__orderTracking">
                           <a
                             href="/en/customer/orderquery"
                             class="customer__orderTrackingLink"
@@ -111,17 +109,17 @@ export default function Navbar(props) {
                               <use xlink:href="#icon-filter-angle"></use>
                             </svg>
                           </a>
-                        </div> */}
+                        </div> 
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
-                  <a className="new-header__link -favorite" href="/">
+                  <a className="new-header__link -favorite" href="/favorites">
                   <MdFavoriteBorder />
                   </a>
-                  <a href="/" className="new-header__link -cart">
+                  {/* <a href="/cart" className="new-header__link -cart"> */}
                   <PiHandbag />
-                  </a>
+                  {/* </a> */}
                 </div>
               </Col>
             </Row>
