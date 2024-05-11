@@ -17,6 +17,6 @@ export default async function Categorie({ params }){
 
 
     return(
-        <CategoriePage articles={articles}/>
+        <CategoriePage gender={gender} name={name} articles={articles}/>
     )
 }

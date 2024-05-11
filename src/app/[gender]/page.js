@@ -21,8 +21,6 @@ export default async function Gender({ params }){
 
     const categories = await getCategories(gender);
 
-    console.log(categories);
-
 
     const breadcrumbs = [
         <Link underline="hover" key="1" color="inherit" href="/">

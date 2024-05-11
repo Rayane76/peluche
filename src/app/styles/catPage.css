@@ -9,3 +9,28 @@
     margin-right: -8px;
     margin-left: -8px;
 }
+
+
+.newNav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-bottom: 50px;
+    position: sticky;
+    z-index: 200;
+    top: 125px;
+    background-color: white;
+}
+
+.colorInput{
+    margin-right: 10%;
+    width: 100px;
+}
+
+
+@media screen and (max-width: 992px) {
+    .newNav{
+        top: 30px;
+    }
+}
