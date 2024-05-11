@@ -8,76 +8,25 @@ import { MdFavoriteBorder } from "react-icons/md";
 
 export default function ArticleCmp(props){
 
-    let images = []
-
-    props.colors.map((color)=>{
-        color.images.map((image)=>{
-          images.push(image);
-        })
-    })
-
     return(
 
         <Col className="products__item col-6 col-md-4">
         <div className="product">
 
         <div className="product__header">
-          <div className="product__quickOperations">
-           <div className="products__colorOptions -twoColor">
-           <span className="products__itemColor" style={{backgroundColor: "red"}}></span>
-           <span className="products__itemColor" style={{backgroundColor: "blue"}}></span>
-           </div>
-          </div>
-          <a href={"/articles/" + props._id} className="product__imageWrapper">
-            <div className="product__imageList">
-
-              {images.length > 4 ? 
-               <>
-               <div className="product__imageItem"></div>
-              <Image src={images[0]} width={0} height={0} sizes="100vw" className="product__previewImage -first -loaded"/>
-
-              <div className="product__imageItem"></div>
-              <Image src={images[1]} width={0} height={0} sizes="100vw"  className="product__previewImage -first -loaded"/>
-
-              <div className="product__imageItem"></div>
-              <Image src={images[2]} width={0} height={0} sizes="100vw"  className="product__previewImage -first -loaded"/>
-
-              <div className="product__imageItem"></div>
-              <Image src={images[3]} width={0} height={0} sizes="100vw"  className="product__previewImage -first -loaded"/>
-               </>
-              :
-              <>
-              <div className="product__imageItem"></div>
-              <Image src={images[0]} width={0} height={0} sizes="100vw"  className="product__previewImage -first -loaded"/>
-
-
-
-              <div className="product__imageItem"></div>
-              <Image src={images[1]} width={0} height={0} sizes="100vw"  className="product__previewImage  -loaded"/>
-
-
-
-              <div className="product__imageItem"></div>
-              <Image src={images[0]} width={0} height={0} sizes="100vw"  className="product__previewImage -loaded"/>
-
-
-
-              <div className="product__imageItem"></div>
-              <Image src={images[1]} width={0} height={0} sizes="100vw"  className="product__previewImage -loaded"/>
-              </>
-              }
-
-
-            </div>
-            <Image src={images[0]} width={0} height={0} sizes="100vw" className="product__image lazy -loaded" />
+          <a href={"/articles/" + props.id} className="product__imageWrapper">
+            <Image src={props.colors[0].images[0]} width={0} height={0} sizes="100vw" className="product__image lazy -loaded" />
         </a>
 
         <div className="product__sizeContent">
              <div className="product__sizeList">
                {props.colors[0].sizes.map((size,index)=>{
                 return(
-                  <div className="product__sizeItem">
-                   <button disabled className="product__sizeButton">{size.name.toUpperCase()}</button>
+                  <div key={index} className="product__sizeItem">
+                  {size.stock === 0 ? <button disabled className="product__sizeButton">{size.name.toUpperCase()}</button>
+                  :
+                  <button className="product__sizeButton">{size.name.toUpperCase()}</button>
+                  }
                   </div>
                 )
                })}
@@ -90,11 +39,6 @@ export default function ArticleCmp(props){
             <div className="product__contentHeader">
               <h3 className="product__title h5">{props.name}</h3>
             </div>
-
-            <button className="product__action -addFavorite">
-            <span className="-spinner" style={{display: "none"}}></span>
-            <MdFavoriteBorder style={{height:"16px",width:"16px"}} />
-            </button>
 
 
             <div className="product__bottom">

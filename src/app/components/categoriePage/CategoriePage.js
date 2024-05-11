@@ -11,9 +11,26 @@ export default function CategoriePage(props){
         <Container>
         <div>
         <div className="row heroGrid">
-         {props.articles.map((article)=>{
+         {props.articles.map((article,index)=>{
              return(
-                 <ArticleCmp id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                <>
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                 <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+                </>
              )
          })}
          </div>

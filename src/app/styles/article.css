@@ -70,17 +70,9 @@
 }
 
 @media (max-width: 767px) {
-    .products__quickOperations {
-        position: absolute;
-        bottom: 5px;
-        left: 5px;
-        display: flex;
-        z-index: 12;
+    .product__sizeContent{
+     display: none;
     }
-}
-
-.products__quickOperations {
-    display: none;
 }
 
 
@@ -96,6 +88,20 @@
     min-height: 52px;
     background-color: rgba(255, 255, 255, .9);
 }
+
+.products__item:hover  .product__sizeContent{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transition: 250ms all;
+    min-height: 52px;
+    background-color: rgba(255, 255, 255, .9);
+}
+
 
 .product__sizeList {
     display: flex;
