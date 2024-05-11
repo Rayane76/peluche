@@ -129,16 +129,16 @@ export default function Navbar(props) {
       <div className="navbar">
         <ul className="navbar__content">
           <li className="navbar__item">
-            <a className="navbar__link h5" href="/">New Arrivals</a>
+            <a className="navbar__link h5" href="/newArrivals">New Arrivals</a>
           </li>
           <li className="navbar__item">
-          <a className="navbar__link h5" href="/">Men</a>
+          <a className="navbar__link h5" href="/Men">Men</a>
           </li>
           <li className="navbar__item">
-          <a className="navbar__link h5" href="/">Women</a>
+          <a className="navbar__link h5" href="/Women">Women</a>
           </li>
           <li className="navbar__item">
-          <a className="navbar__link h5" href="/">Kids</a>
+          <a className="navbar__link h5" href="/Kids">Kids</a>
           </li>
         </ul>
       </div>

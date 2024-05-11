@@ -1,5 +1,4 @@
 'use client'
-import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -11,7 +10,7 @@ import 'swiper/css/navigation';
 import '../../../styles/newArrivalsHome.css';
 
 // import required modules
-import { Pagination, Navigation } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -52,124 +51,9 @@ export default function NewArrival(props){
         return(
           <>
             <SwiperSlide>
-                <div className='newArrival' onClick={()=>router.push("/articles/" + article._id)} >
-                   <div className='imgDiv'>
-                    <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
-                    </div>
-                    <p className='name'>
-                      {article.name}
-                    </p>
-                    <p className='price'>
-                    {article.price}
-                    </p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className='newArrival'>
-                   <div className='imgDiv'>
-                    <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
-                    </div>
-                    <p className='name'>
-                      {article.name}
-                    </p>
-                    <p className='price'>
-                    {article.price}
-                    </p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className='newArrival'>
-                   <div className='imgDiv'>
-                    <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
-                    </div>
-                    <p className='name'>
-                      {article.name}
-                    </p>
-                    <p className='price'>
-                    {article.price}
-                    </p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className='newArrival'>
-                   <div className='imgDiv'>
-                    <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
-                    </div>
-                    <p className='name'>
-                      {article.name}
-                    </p>
-                    <p className='price'>
-                    {article.price}
-                    </p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className='newArrival'>
-                   <div className='imgDiv'>
-                    <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
-                    </div>
-                    <p className='name'>
-                      {article.name}
-                    </p>
-                    <p className='price'>
-                    {article.price}
-                    </p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className='newArrival'>
-                   <div className='imgDiv'>
-                    <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
-                    </div>
-                    <p className='name'>
-                      {article.name}
-                    </p>
-                    <p className='price'>
-                    {article.price}
-                    </p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className='newArrival'>
-                   <div className='imgDiv'>
-                    <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
-                    </div>
-                    <p className='name'>
-                      {article.name}
-                    </p>
-                    <p className='price'>
-                    {article.price}
-                    </p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className='newArrival'>
-                   <div className='imgDiv'>
-                    <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
-                    </div>
-                    <p className='name'>
-                      {article.name}
-                    </p>
-                    <p className='price'>
-                    {article.price}
-                    </p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className='newArrival'>
-                   <div className='imgDiv'>
-                    <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
-                    </div>
-                    <p className='name'>
-                      {article.name}
-                    </p>
-                    <p className='price'>
-                    {article.price}
-                    </p>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className='newArrival'>
+                <div className='newArrival'
+                 onClick={()=>router.push("/articles/" + article._id)}
+                  >
                    <div className='imgDiv'>
                     <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />
                     </div>
@@ -184,15 +68,6 @@ export default function NewArrival(props){
             </>
         )
        })}
-        {/* <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
       </Swiper>
         </section>
     )
