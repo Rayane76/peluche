@@ -1,0 +1,228 @@
+.product__imageWrapper {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background-size: cover;
+    width: 100%;
+}
+
+.product__imageList {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+}
+
+.product__imageItem {
+    flex: 1;
+}
+
+.product__previewImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    max-width: 100%;
+    height: auto;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%;
+}
+
+.product__image {
+    vertical-align: bottom;
+    opacity: 1;
+    max-width: 100%;
+    height: auto;
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%;
+}
+
+.products__item {
+    margin-bottom: 40px;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+.product__header {
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    border: none;
+}
+
+.product__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+@media (max-width: 767px) {
+    .products__quickOperations {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        display: flex;
+        z-index: 12;
+    }
+}
+
+.products__quickOperations {
+    display: none;
+}
+
+
+.product__sizeContent {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: 250ms all;
+    min-height: 52px;
+    background-color: rgba(255, 255, 255, .9);
+}
+
+.product__sizeList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 0 14px;
+}
+
+.product__sizeItem {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.product__sizeButton:disabled {
+    opacity: .2;
+    cursor: not-allowed;
+}
+
+.product__sizeButton {
+    transition: 250ms border;
+    border: 1px solid rgba(0, 0, 0, 0);
+    height: 30px;
+    padding: 0 10px;
+    cursor: pointer;
+    text-align: center;
+    color: #333;
+    font-family: "TTNormsPro-Medium";
+    font-size: 12px;
+}
+
+.product__title {
+    color: #333;
+    padding-right: 21px;
+    margin-bottom: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.h5{
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    font-family: "TTNormsPro-Medium";
+}
+
+.product__action.-addFavorite {
+    width: 41px;
+    height: 41px;
+    cursor: pointer;
+    position: absolute;
+    top: -10px;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: 250ms all;
+}
+
+.product__action.-addFavorite .-spinner {
+    background-color: #fff;
+}
+
+.-spinner {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+}
+
+.product__bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.product__prices {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1.5625rem;
+    height: 36px;
+    position: relative;
+    bottom: 0;
+}
+
+.product__priceContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+h6, .h6 {
+    font-size: .75rem;
+    line-height: 1.125rem;
+    font-weight: 500;
+    font-family: "TTNormsPro-Medium";
+}
+
+.product__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.product__price.-actual {
+    color: #333;
+}
+
+.product__price {
+    display: block;
+    color: #333;
+}
+
+.h4 {
+    font-size: 1rem;
+    line-height: 1.375rem;
+    font-weight: 500;
+    font-family: "TTNormsPro-Medium";
+}

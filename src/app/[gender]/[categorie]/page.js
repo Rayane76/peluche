@@ -1,5 +1,5 @@
+import CategoriePage from "@/app/components/categoriePage/CategoriePage";
 import axios from "axios";
-
 
 async function getCategorie(gender,name){
     const res = await axios.get(`http://localhost:3000/api/categorie/getCategorieByNameAndGender?gender=${gender}&name=${name}`)
@@ -15,12 +15,8 @@ export default async function Categorie({ params }){
 
     const articles = await getCategorie(gender,name);
 
-    console.log(articles);
-
 
     return(
-        <section>
-            
-        </section>
+        <CategoriePage articles={articles}/>
     )
 }
