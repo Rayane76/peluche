@@ -32,7 +32,7 @@ export default function CategoriePage(props){
         <Link underline="hover" key="1" color="inherit" href="/">
           Home
         </Link>,
-        <Link underline="hover" key="1" color="inherit" href="/">
+        <Link underline="hover" key="1" color="inherit" href={"/" + props.gender}>
           {props.gender}
         </Link>,
         <Typography key="3" color="text.primary">

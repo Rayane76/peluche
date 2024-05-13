@@ -15,12 +15,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-left: 10%;
+    padding-left: 10%;
     margin-bottom: 50px;
     position: sticky;
     z-index: 200;
-    top: 125px;
+    top: 126px;
     background-color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 .colorInput{
@@ -31,6 +33,6 @@
 
 @media screen and (max-width: 992px) {
     .newNav{
-        top: 30px;
+        top: 58px;
     }
 }

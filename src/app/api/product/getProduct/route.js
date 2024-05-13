@@ -10,11 +10,12 @@ export async function GET(req){
         await connectToDB();
    
         const searchParams = req.nextUrl.searchParams;
-        const categorie = searchParams.get("categorie");
-        const article = searchParams.get("article")
+        const article = searchParams.get("article");
         
 
-        const result = await Categorie.findOne({_id: categorie});
+        const result = await Categorie.findOne({articles: { $elemMatch: {_id: article}}});
+
+        
         if(!result){
             return NextResponse.json({
                 success: false,
