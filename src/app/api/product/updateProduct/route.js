@@ -18,7 +18,7 @@ export async function POST(req){
            result.articles.map((art)=>{
              if(art._id.toString() === article._id){
                 art.name = article.name,
-                art.sizes = article.sizes,
+                art.colors = article.colors,
                 art.images = article.images
              }
            })

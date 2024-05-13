@@ -452,7 +452,11 @@ h2, .h2 {
     .product__size .radio-box__label {
         font-size: .875rem;
     }
+    .product-images.-mobile #mobile-images-carousel {
+        height: 100%;
+    }
 }
+
 
 .product__sizes .overlay {
     display: none;

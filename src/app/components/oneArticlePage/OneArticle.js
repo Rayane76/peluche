@@ -7,6 +7,10 @@ import { Pagination } from 'swiper/modules';
 import Button from 'react-bootstrap/Button';
 import { IoIosHeartEmpty } from "react-icons/io";
 
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 export default function OneArticle(props) {
   const article = props.article;
 
@@ -58,16 +62,34 @@ export default function OneArticle(props) {
           </div>
 
           <div className="product-images -mobile">
-          <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+          <Swiper 
+         pagination={{
+          clickable: true,
+           }} 
+        modules={[Pagination]} 
+         style={{height:"100%"}}
+        >
+            {color.images.map((image)=>{
+          return(
+            <SwiperSlide style={{justifyContent:"center",alignItems:"center",display:"flex"}}>
+        <img src={image} style={{height:"100%",maxWidth:"100%",objectFit:"contain"}} alt='product'></img>
+        </SwiperSlide>
+          )
+        })}
+
+        </Swiper>
+          {/* <Swiper slidesPerView={1} pagination={true} modules={[Pagination]} className="mySwiper">
           {color.images.map((image,index)=>{
             return(
-                <div key={index} className="swiperBox">
+                <div key={index} className="swiperBox"> 
+                <SwiperSlide>
                 <img src={image} alt="article image"></img>
+                </SwiperSlide>
                 </div>
             )
           })}
 
-      </Swiper>
+      </Swiper> */}
  
           </div>
         </Col>
