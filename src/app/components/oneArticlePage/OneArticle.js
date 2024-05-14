@@ -10,9 +10,12 @@ import { IoIosHeartEmpty } from "react-icons/io";
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useRouter } from "next/navigation";
 
 export default function OneArticle(props) {
   const article = props.article;
+
+  const router = useRouter();
 
   const [color, setColor] = useState(article.colors[0]);
   const [size,setSize] = useState("Size");
@@ -26,6 +29,7 @@ export default function OneArticle(props) {
     e.target.classList.add("checked");
     }
     setSize(size);
+    setError("");
     const sizesOpen = document.getElementsByClassName("product__sizes");
     sizesOpen[0].classList.toggle("-mobileShow");
   }
@@ -33,6 +37,21 @@ export default function OneArticle(props) {
   const handleOpen = ()=>{
     const sizesOpen = document.getElementsByClassName("product__sizes");
     sizesOpen[0].classList.toggle("-mobileShow");
+  }
+
+  const [error,setError] = useState("");
+
+  const handleBuy = ()=>{
+    if(size === "Size"){
+      const sizesOpen = document.getElementsByClassName("product__sizes");
+      sizesOpen[0].classList.toggle("-mobileShow");
+      setError("Choose your size !");
+    }
+    else{
+       const articleToBuy = {id: props.id, name: article.name , image: color.images[0], color: color.name, size: size}
+       localStorage.setItem("article",JSON.stringify(articleToBuy));
+       router.push("/checkout");
+    }
   }
 
   return (
@@ -69,27 +88,15 @@ export default function OneArticle(props) {
         modules={[Pagination]} 
          style={{height:"100%"}}
         >
-            {color.images.map((image)=>{
+            {color.images.map((image,index)=>{
           return(
-            <SwiperSlide style={{justifyContent:"center",alignItems:"center",display:"flex"}}>
+            <SwiperSlide key={index} style={{justifyContent:"center",alignItems:"center",display:"flex"}}>
         <img src={image} style={{height:"100%",maxWidth:"100%",objectFit:"contain"}} alt='product'></img>
         </SwiperSlide>
           )
         })}
 
         </Swiper>
-          {/* <Swiper slidesPerView={1} pagination={true} modules={[Pagination]} className="mySwiper">
-          {color.images.map((image,index)=>{
-            return(
-                <div key={index} className="swiperBox"> 
-                <SwiperSlide>
-                <img src={image} alt="article image"></img>
-                </SwiperSlide>
-                </div>
-            )
-          })}
-
-      </Swiper> */}
  
           </div>
         </Col>
@@ -122,7 +129,7 @@ export default function OneArticle(props) {
           <div className="product__sizes">
             <div className="overlay"></div>
             <div className="product__header -sizes">
-            <span className="product__label -sizes">Select your size : </span>
+            <span className="product__label -sizes">Select your size : <span style={{color:"red"}}>{error}</span></span>
             </div>
             <div className="product__content -sizes">
             {color.sizes.map((size,i)=>{
@@ -151,7 +158,7 @@ export default function OneArticle(props) {
             {size}
            </button>
            <div className="product__button -addToCart">
-           <Button className="lg block" variant="dark">Buy now</Button>
+           <Button onClick={()=>handleBuy()} className="lg block" variant="dark">Buy now</Button>
            </div>
            <button className="product__button -addToFavorite">
            <IoIosHeartEmpty />

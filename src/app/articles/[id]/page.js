@@ -39,7 +39,7 @@ export default async function Article({ params }){
       </Breadcrumbs>
       </Stack>
       </div>
-        <OneArticle article={article} />
+        <OneArticle article={article} id={id} />
         </>
     )
 }

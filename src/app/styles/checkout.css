@@ -1,0 +1,142 @@
+
+
+
+.layout__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.layout__main {
+    flex: 1;
+    background-color: #fafafa;
+}
+
+.checkout {
+    margin-top: 15px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    position: relative;
+    margin: 16px 20px 26px;
+    text-align: center;
+}
+
+
+.steps .step {
+    position: relative;
+    width: 10%;
+    min-width: 48px;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+}
+
+.steps .step__wrapper {
+    display: inline-block;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    outline: none;
+}
+
+.steps .step__icon {
+    height: 16px;
+    margin-bottom: 5px;
+    display: none;
+}
+
+.steps .step__title {
+    font-family: TTNormsPro-Medium;
+    font-size: 14px;
+}
+
+.steps .step__title:before {
+    left: 0;
+}
+
+.steps .step__title:before, .steps .step__title:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    background-color: #333;
+    width: 50%;
+}
+
+
+.steps .step__title .order{
+    display: none;
+}
+
+.steps .step__title:after {
+    right: 0;
+}
+
+.steps .step:after {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #333;
+    border: 1px solid #333333;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.steps .step__title .order {
+    display: none;
+}
+
+.steps .step:nth-child(2) {
+    width: 80%;
+}
+
+
+@media (min-width: 992px) {
+    .layout__content {
+        flex-direction: row;
+    }
+    .layout__main:not(.-empty) {
+        max-width: 68%;
+    }
+    .checkout {
+        width: calc(100% - 40px);
+        margin: 25px 20px 40px;
+    }
+    .steps {
+        height: 55px;
+        margin: 0 0 40px;
+    }
+    .steps .step {
+        min-width: 108px;
+    }
+
+    .steps .step__icon {
+        display: inline-block;
+    }
+    .steps .step__title {
+        font-family: TTNormsPro-Normal;
+    }
+
+    .steps .step__title .order {
+        display: inline-block;
+        margin-right: 2px;
+    }
+
+    .steps .step__title .order {
+        display: inline-block;
+        margin-right: 2px;
+    }
+
+
+}
