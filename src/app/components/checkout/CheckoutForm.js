@@ -61,7 +61,7 @@ const CheckoutForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <button disabled={!stripe}>Submit</button>
+      <button className='button mt-4' disabled={!stripe}>Submit</button>
     </form>
   )
 };
