@@ -48,9 +48,9 @@ export default function OneArticle(props) {
       setError("Choose your size !");
     }
     else{
-       const articleToBuy = {id: props.id, name: article.name , image: color.images[0], color: color.name, size: size}
+       const articleToBuy = {price: article.price , articles: [{id: props.id, price: article.price, name: article.name , image: color.images[0], color: color.name, size: size}]}
        localStorage.setItem("article",JSON.stringify(articleToBuy));
-       router.push("/checkout");
+       router.push("/check");
     }
   }
 
