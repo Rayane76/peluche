@@ -77,9 +77,10 @@
         padding-bottom: 10px;
         margin-bottom: 10px;
     }
+
     .summary__products .product__area.-image {
-        width: 60px;
-        max-height: 91px;
+        width: 86px;
+        max-height: 131px;
         overflow: hidden;
     }
     .summary__products .product__area.-content {
@@ -145,9 +146,8 @@
 
 
 .articleImg{
-    object-fit: contain;
-    height: 86px;
-    width: 131px;
+    max-height: 86px;
+    max-width: 131px;
 }
 
 
@@ -201,7 +201,7 @@
 .summary__products .product__area.-image {
     width: 86px;
     max-height: 131px;
-    background-color: #fafafa;
+    background-color: white;
     background-size: cover;
     border: none;
     overflow: hidden;

@@ -1,12 +1,13 @@
 "use client";
 import { Col, Container, Row } from "react-bootstrap";
 import "../../styles/oneArticle.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import Button from 'react-bootstrap/Button';
 import { IoIosHeartEmpty } from "react-icons/io";
-
+import { CiHeart } from "react-icons/ci";
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -55,6 +56,24 @@ export default function OneArticle(props) {
     }
   }
 
+  const handleAddCart = ()=>{
+    if(size === "Size"){
+      const sizesOpen = document.getElementsByClassName("product__sizes");
+      sizesOpen[0].classList.toggle("-mobileShow");
+      setError("Choose your size !");
+    }
+      else{
+         const articleToBuy = {priceTotal: article.price * quantity , id: props.id, quantity : quantity , price: article.price, name: article.name , image: color.images[0], color: color.name, size: size}
+         let currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+         // Add the new article to the cart
+         currentCart.push(articleToBuy);
+     
+         // Save the updated cart back to localStorage
+         localStorage.setItem('cart', JSON.stringify(currentCart));
+      }
+    }
+
   const handleDecrement = (e) => {
     e.preventDefault();
     if (quantity > 1) {
@@ -78,6 +97,36 @@ export default function OneArticle(props) {
     selected[0].classList.remove("checked")
     }
   }
+
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(()=>{
+    const storedFav = JSON.parse(localStorage.getItem('fav')) || [];
+      const exists = storedFav.some((item)=> item.id === props.id);
+      if(exists){
+        setIsActive(true)
+      }
+      else{
+        setIsActive(false);
+      }
+
+  },[])
+
+  const toggleHeart = () => {
+    const storedFav = JSON.parse(localStorage.getItem('fav')) || [];
+    if(isActive){
+      const filteredData = storedFav.filter(item => item.id !== props.id);
+      localStorage.setItem('fav', JSON.stringify(filteredData));
+    }
+
+    else{ 
+       storedFav.push({name: article.name,id: props.id,price: article.price,image: color.images[0]})
+       localStorage.setItem('fav', JSON.stringify(storedFav));
+    }
+
+    setIsActive(!isActive);
+  };
+
 
   return (
     <Container>
@@ -130,7 +179,9 @@ export default function OneArticle(props) {
         <div className="product">
          <div className="product__tools">
          <button className="product__button -addToFavorite -mobile">
-         <IoIosHeartEmpty />
+         <div onClick={toggleHeart} style={{ cursor: 'pointer', fontSize: '2em' }}>
+      {isActive ? <FaHeart color="black" /> : <FaRegHeart color="black" />}
+    </div>
          </button>
          </div>
           <h1 className="product__name h2">{article.name}</h1>
@@ -181,7 +232,7 @@ export default function OneArticle(props) {
 
 
           <div className="product__shopTheLook">
-          <Button className="lg block" variant="outline-light">
+          <Button onClick={()=>handleAddCart()} className="lg block" variant="outline-light">
           <span className="button__text">Add to Cart</span>
           </Button>
           </div>
@@ -192,10 +243,12 @@ export default function OneArticle(props) {
             {size}
            </button>
            <div className="product__button -addToCart">
-           <Button onClick={()=>handleBuy()} className="lg block" variant="dark">Buy now</Button>
+           <Button onClick={()=>handleBuy()} className="block2 lg" variant="dark">Buy now</Button>
            </div>
            <button className="product__button -addToFavorite">
-           <IoIosHeartEmpty />
+           <div onClick={toggleHeart} style={{ cursor: 'pointer', fontSize: '2em' }}>
+      {isActive ? <FaHeart color="black" /> : <FaRegHeart color="black" />}
+    </div>
           </button>
           </div>
           </div>
