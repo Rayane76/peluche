@@ -149,7 +149,7 @@ export default function Check() {
                                       Piece:
                                       </span>
                                       <span className="product__attrValue">
-                                      1
+                                      {article.quantity}
                                       </span>
                                       </div>
                                    </div>
@@ -171,7 +171,7 @@ export default function Check() {
                              TOTAL
                            </div>
                            <div className="summaryItem__value" data-qa="totalAmountToBePaid">
-                             7.599,00 TL
+                             {articles.price} TL
                            </div>
                          </div>
                       </div>

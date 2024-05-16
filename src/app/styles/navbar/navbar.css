@@ -134,6 +134,15 @@ a, a:hover {
     bottom: 0;
 }
 
+.searchDiv{
+}
+
+.searchDivArtName{
+    width: 100px;
+    font-size: 14px;
+}
+
+
 @media screen and (min-width: 1366px) {
     .navbar::before, .navbar::after {
         max-width: 1288px;

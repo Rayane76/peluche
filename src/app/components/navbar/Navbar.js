@@ -5,15 +5,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { CiSearch } from "react-icons/ci";
-import { FaRegUser } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { PiHandbag } from "react-icons/pi";
 import Autocomplete from '@mui/material/Autocomplete';
 import Image from "next/image";
 
 export default function Navbar(props) {
-
-    // console.log(props.allArticles[0].articles);
 
     let articles = [];
      props.allArticles.map((categorie)=>{
@@ -36,13 +33,6 @@ export default function Navbar(props) {
                   <CiSearch className="new-header__button -search js-search-trigger"></CiSearch>
                   <form className="new-header__search">
                     <CiSearch className="new-header__icon -search"></CiSearch>
-                    {/* <input
-                      type="text"
-                      name="searchKey"
-                      placeholder="Search for Article, Color..."
-                      id="search"
-                      className="new-header__searchBox"
-                    ></input> */}
                     <Autocomplete
                       id="search"
                       className="new-header__searchBox"
@@ -51,7 +41,7 @@ export default function Navbar(props) {
                       renderOption={(props, option) => (
                        <div className="searchDiv">
                        <h6 className="searchDivArtName">{option.name}</h6>
-                       <h6 className="searchDivArtName">{option.price}</h6>
+                       <h6 className="searchDivArtName">{option.price} TL</h6>
                        <Image src={option.image} height={50} width={50} />
                        </div>
       )}
@@ -61,8 +51,6 @@ export default function Navbar(props) {
                       name="searchKey"
                       style={{all:"unset",marginTop:"8px"}}
                       placeholder="Search for Article, Color..."
-                      // id="search"
-                      // className="new-header__searchBox"
                       {...params.inputProps}
                     ></input>
           </div>}
@@ -79,47 +67,12 @@ export default function Navbar(props) {
               </Col>
               <Col className="col-3 header-col__right">
                 <div className="new-header__area -right">
-                  {/* <div className="customer">
-                    <a
-                      className="new-header__link -customer"
-                      href="/"
-                    >
-                     <FaRegUser />
-                    </a>
-                    <div className="customer__dropdown">
-                      <div className="customer__menu -guest">
-                        <div className="customer__login">
-                          <a
-                            href="/"
-                            className="button -primary -block h5"
-                          >
-                            Log In / Sign Up
-                          </a>
-                        </div>
-                         <div class="customer__orderTracking">
-                          <a
-                            href="/en/customer/orderquery"
-                            class="customer__orderTrackingLink"
-                          >
-                            <svg width="20" height="18">
-                              <use xlink:href="#track-delivery"></use>
-                            </svg>
-                            <span class="text h4">Order tracking</span>
-                            <svg width="6" height="11">
-                              <use xlink:href="#icon-filter-angle"></use>
-                            </svg>
-                          </a>
-                        </div> 
-                      </div>
-                    </div>
-                  </div> */}
-
                   <a className="new-header__link -favorite" href="/favorites">
                   <MdFavoriteBorder />
                   </a>
-                  {/* <a href="/cart" className="new-header__link -cart"> */}
+                  <a href="/cart" className="new-header__link -cart">
                   <PiHandbag />
-                  {/* </a> */}
+                  </a>
                 </div>
               </Col>
             </Row>

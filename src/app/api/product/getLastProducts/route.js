@@ -23,6 +23,8 @@ export async function GET(req){
 
         // const first10Products = dates.slice(0, 10);
 
+        dates.reverse();
+
 
         return NextResponse.json({
             data: dates,

@@ -19,6 +19,7 @@ export default function OneArticle(props) {
 
   const [color, setColor] = useState(article.colors[0]);
   const [size,setSize] = useState("Size");
+  const [quantity, setQuantity] = useState(1);
 
   const handleSize = (e,size) => {
     const selected = document.getElementsByClassName("checked");
@@ -48,9 +49,33 @@ export default function OneArticle(props) {
       setError("Choose your size !");
     }
     else{
-       const articleToBuy = {price: article.price , articles: [{id: props.id, price: article.price, name: article.name , image: color.images[0], color: color.name, size: size}]}
+       const articleToBuy = {price: article.price * quantity , articles: [{id: props.id, quantity : quantity , price: article.price, name: article.name , image: color.images[0], color: color.name, size: size}]}
        localStorage.setItem("article",JSON.stringify(articleToBuy));
        router.push("/check");
+    }
+  }
+
+  const handleDecrement = (e) => {
+    e.preventDefault();
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleIncrement = (e) => {
+    const selectedSize = color.sizes.find((s) => s.name === size);
+    if(selectedSize && quantity < selectedSize.stock){
+    e.preventDefault();
+    setQuantity(quantity + 1);
+    }
+  };
+
+  const handleColor = (color) => {
+    setColor(color);
+    setSize("Size");
+    const selected = document.getElementsByClassName("checked");
+    if(selected[0] != undefined){        
+    selected[0].classList.remove("checked")
     }
   }
 
@@ -119,7 +144,7 @@ export default function OneArticle(props) {
           <div className="product__colors">
           {article.colors.map((color,j)=>{
             return(
-                <div onClick={()=>setColor(color)} key={j} className="product__color">
+                <div onClick={()=>handleColor(color)} key={j} className="product__color">
               <span style={{display:"block",width:"100%",height:"100%",borderRadius:"50%",backgroundColor:color.name.toLowerCase()}}></span>
             </div>
             )
@@ -143,7 +168,16 @@ export default function OneArticle(props) {
             })}
         
           </div>
+            
           </div>
+          {size != "Size" && 
+          <div className="quantity-input mb-4">
+          <span className="product__label -sizes">Select quantity : </span>
+      <button className="quantity-btn" onClick={handleDecrement}>-</button>
+      <span className="quantity">{quantity}</span>
+      <button className="quantity-btn" onClick={handleIncrement}>+</button>
+    </div>
+          }
 
 
           <div className="product__shopTheLook">

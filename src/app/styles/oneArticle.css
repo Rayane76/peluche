@@ -494,4 +494,24 @@ h2, .h2 {
     height: 100%;
     object-fit: cover;
   }
+
+
+  .quantity-input {
+    display: flex;
+    align-items: center;
+  }
   
+  .quantity-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 0.25rem;
+  }
+  
+  .quantity {
+    font-size: 1rem;
+    margin: 0 0.5rem;
+  }
