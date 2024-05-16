@@ -101,7 +101,7 @@ export default function Navbar(props) {
               </Col>
               <Col className="col-3 header-col__right">
                 <div className="new-header__area -right">
-                  <a className="new-header__link -favorite" href="/favorites">
+                  <a className="new-header__link -favorite" href="/favourites">
                   <MdFavoriteBorder className="icn" />
                   </a>
                   <PiHandbag id="crt" className="icn" onClick={()=>handleShow()}/>
