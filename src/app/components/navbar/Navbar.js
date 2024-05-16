@@ -25,17 +25,17 @@ export default function Navbar(props) {
     
     
 
-  const [show, setShow] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShowCart(false);
+  const handleShow = () => setShowCart(true);
 
   const [articlesCart, setArticlesCart] = useState(null);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setArticlesCart(storedCart);
-  }, [show]);
+  }, [showCart]);
 
   const handleDeleteFromCart = (index)=> {
     let currentCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -53,6 +53,12 @@ export default function Navbar(props) {
 
   }
 
+  
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handleCloseMenu = () => setShowMenu(false);
+  const handleShowMenu = () => setShowMenu(true);
+
 
 
   return (
@@ -63,7 +69,7 @@ export default function Navbar(props) {
             <Row className="align-items-center">
               <Col className="col-3 header-col__left">
                 <div className="new-header__area -left">
-                  <HiMenuAlt2 className="new-header__button -menu mlNav--trigger" />
+                  <HiMenuAlt2 onClick={()=>handleShowMenu()} className="new-header__button -menu mlNav--trigger" />
                   <CiSearch className="new-header__button -search js-search-trigger"></CiSearch>
                   <form className="new-header__search">
                     <CiSearch className="new-header__icon -search"></CiSearch>
@@ -130,7 +136,7 @@ export default function Navbar(props) {
 
 
 
-      <Offcanvas placement="end" show={show} onHide={handleClose}>
+      <Offcanvas placement="end" show={showCart} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title><PiHandbag className="icn" /> My Cart</Offcanvas.Title>
         </Offcanvas.Header>
@@ -188,6 +194,39 @@ export default function Navbar(props) {
                       </div>
         </Offcanvas.Body>
       </Offcanvas>
+
+
+
+
+      <Offcanvas show={showMenu} onHide={handleCloseMenu}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title><PiHandbag className="icn me-2" /> PELUCHE</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <ul className="menu">
+            <li className="menu__item">
+            <a className="menu__link with-arrow" href="/newArrivals">
+                            New Arrivals
+                        </a>
+            </li>
+            <li>
+            <a className="menu__link with-arrow" href="/Men">
+                            Men
+                        </a>
+            </li>
+            <li>
+            <a className="menu__link with-arrow" href="/Women">
+                            Women
+                        </a>
+            </li>
+            <li>
+            <a className="menu__link with-arrow" href="/Kids">
+                            Kids
+                        </a>
+            </li>
+          </ul>
+        </Offcanvas.Body>
+        </Offcanvas>
     </div>
   );
 }

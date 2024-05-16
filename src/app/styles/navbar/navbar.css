@@ -299,3 +299,35 @@ ol, ul {
     height: 30px;
     width: 30px;
 }
+
+
+.menu__link {
+    position: relative;
+    display: block;
+    padding: 20px 17px 20px 20px;
+    font-family: "TTNormsPro-Medium";
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color .1s;
+}
+
+
+ .menu__link.with-arrow::after {
+    content: "›";
+    position: absolute;
+    right: 20px;
+    color: #c1c1c1;
+    font-family: "NetWork" !important;
+    font-size: 1rem;
+}
+
+ .menu__item {
+    display: block;
+    width: calc(100% + 3px);
+    background-color: #fff;
+}
+
+.menu{
+    padding: 0;
+}
