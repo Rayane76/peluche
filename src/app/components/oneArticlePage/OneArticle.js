@@ -71,7 +71,17 @@ export default function OneArticle(props) {
      
          // Save the updated cart back to localStorage
          localStorage.setItem('cart', JSON.stringify(currentCart));
+
+         const svgElement = document.getElementById('crt');
+const event = new MouseEvent('click', {
+  view: window,
+  bubbles: true,
+  cancelable: true
+});
+svgElement.dispatchEvent(event);
       }
+
+
     }
 
   const handleDecrement = (e) => {

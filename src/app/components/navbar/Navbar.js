@@ -35,7 +35,7 @@ export default function Navbar(props) {
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setArticlesCart(storedCart);
-  }, []);
+  }, [show]);
 
   const handleDeleteFromCart = (index)=> {
     let currentCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -104,7 +104,7 @@ export default function Navbar(props) {
                   <a className="new-header__link -favorite" href="/favorites">
                   <MdFavoriteBorder className="icn" />
                   </a>
-                  <PiHandbag className="icn" onClick={()=>handleShow()}/>
+                  <PiHandbag id="crt" className="icn" onClick={()=>handleShow()}/>
                 </div>
               </Col>
             </Row>
