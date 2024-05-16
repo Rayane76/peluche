@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import axios from 'axios';
-import "../styles/categories.css"
+import "../../styles/categories.css"
 import Image from 'next/image';
 
 

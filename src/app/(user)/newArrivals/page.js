@@ -1,7 +1,7 @@
-import CategoriePage from "../components/categoriePage/CategoriePage";
+import CategoriePage from "@/app/components/categoriePage/CategoriePage";
 
 async function getNewArrivals(){
-    const res = await import("../api/product/getLastProducts/route");
+    const res = await import("../../api/product/getLastProducts/route");
   
     const categories = await (await res.GET()).json();
   

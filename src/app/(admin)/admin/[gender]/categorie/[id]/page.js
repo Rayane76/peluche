@@ -1,39 +1,31 @@
-'use client'
-
-import { useState,useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 
 
-export default function SpecCategorie({ params }){
+async function getCategorie(id){
+  const res = await axios.get(`http://localhost:3000/api/categorie/getCategorie?id=${id}`)
 
-    const router = useRouter();
+  return res.data.data;
+
+}
+
+export default async function SpecCategorie({ params }){
 
     const gender = params.gender;
     const id = params.id;
 
-    const [categorie,setCategorie] = useState(null);
-
-    useEffect(()=>{
-        getCategoriee();
-     },[]);
- 
-     const getCategoriee = async () => {
-         const result = await axios.get(`/api/categorie/getCategorie?id=${id}`);
-         setCategorie(result.data.data);
-     }
+    const categorie = await getCategorie(id)
 
     return(
        <div>
-         {categorie === null ? "" :
+         {
           categorie.articles.length === 0 ? 
           <div>
           <h1>{categorie.name}</h1>
           <h2>No Articles yet !</h2>
           <Link  href={"/admin/" + gender + "/categorie/" + id + "/edit"}>Edit Categorie Informations</Link>
-         <button onClick={()=>router.push("/admin/" + gender + "/categorie/" + id + "/new")}>Add Article</button>
+         <Link href={"/admin/" + gender + "/categorie/" + id + "/new"}>Add Article</Link>
           </div>
           : 
           <div>
@@ -46,7 +38,7 @@ export default function SpecCategorie({ params }){
           })
           }
           <Link  href={"/admin/" + gender + "/categorie/" + id + "/edit"}>Edit Categorie Informations</Link>
-         <button onClick={()=>router.push("/admin/" + gender + "/categorie/" + id + "/new")}>Add Article</button>
+          <Link href={"/admin/" + gender + "/categorie/" + id + "/new"}>Add Article</Link>
           </div>
          }
        </div>

@@ -5,9 +5,9 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import "../styles/catPage.css"
+import "../../styles/catPage.css"
 import Image from "next/image";
-import "../styles/article.css"
+import "../../styles/article.css"
 import { Col } from "react-bootstrap";
 
 

@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import { Rubik } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -13,7 +13,7 @@ export const metadata = {
 };
 
 async function getCategories(){
-  const res = await import("./api/categorie/getCategoriesNoQuery/route");
+  const res = await import("../api/categorie/getCategoriesNoQuery/route");
 
   const categories = await (await res.GET()).json();
 

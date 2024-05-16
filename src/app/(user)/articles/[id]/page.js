@@ -3,7 +3,7 @@ import axios from "axios";
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Typography } from "@mui/material";
 import Link from '@mui/material/Link';
-import "../../styles/catPage.css"
+import "../../../styles/catPage.css"
 import Stack from '@mui/material/Stack';
 
 

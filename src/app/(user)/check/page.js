@@ -2,9 +2,9 @@
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import CheckoutForm from "../components/checkout/CheckoutForm";
+import CheckoutForm from "../../components/checkout/CheckoutForm";
 import { useEffect, useState } from "react";
-import "../styles/check.css";
+import "../../styles/check.css";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -171,7 +171,7 @@ export default function Check() {
                              TOTAL
                            </div>
                            <div className="summaryItem__value" data-qa="totalAmountToBePaid">
-                             {articles.price} TL
+                             {articles && articles.price} TL
                            </div>
                          </div>
                       </div>

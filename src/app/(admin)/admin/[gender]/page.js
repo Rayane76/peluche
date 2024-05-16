@@ -1,35 +1,29 @@
-'use client'
-import { useState,useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 
 
 
-export default function Gender({ params }){
+async function getCategories(gender){
+    const res = await axios.get(`http://localhost:3000/api/categorie/getAllCategoriesName?gender=${gender}`)
+  
+    return res.data.data;
+
+}
+
+
+export default async function Gender({ params }){
 
 
 
    const gender = params.gender;
-   console.log(gender);
 
-
-   const [categories,setCategories] = useState(null);
-
-   useEffect(()=>{
-       getCategories();
-    },[]);
-
-    const getCategories = async () => {
-        const result = await axios.get(`/api/categorie/getAllCategoriesName?gender=${gender}`);
-        console.log(result.data.data);
-        setCategories(result.data.data);
-    }
+   const categories = await getCategories(gender);
 
 
    return(
     <div>
     <h1>{gender}</h1>
-    {categories === null ? "" : 
+    {
       categories.length === 0 ? <h1>No Categories Yet ! </h1> :
             <div>
             <h3>Categories : </h3>

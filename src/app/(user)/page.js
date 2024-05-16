@@ -1,12 +1,12 @@
-import NewArrival from "./components/home/newArrival/NewArrival";
+import NewArrival from "../components/home/newArrival/NewArrival";
 import Image from "next/image";
-import "./styles/home.css"
-import Categories from "./components/home/categoriesSection/CategoriesSection";
+import "../styles/home.css"
+import Categories from "../components/home/categoriesSection/CategoriesSection";
 
 
 
 async function getCategories(){
-  const res = await import("./api/categorie/getCategoriesNoQuery/route");
+  const res = await import("../api/categorie/getCategoriesNoQuery/route");
 
   const categories = await (await res.GET()).json();
 
@@ -14,7 +14,7 @@ async function getCategories(){
 }
 
 async function getNewArrivals(){
-    const res = await import("./api/product/getLastProducts/route");
+    const res = await import("../api/product/getLastProducts/route");
   
     const categories = await (await res.GET()).json();
   
