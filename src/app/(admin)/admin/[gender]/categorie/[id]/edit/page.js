@@ -4,12 +4,17 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { CldUploadButton } from 'next-cloudinary';
+import Typography from '@mui/material/Typography';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function Edit({ params }){
 
     const router = useRouter();
-
+    const gender = params.gender;
     const id = params.id;
 
     
@@ -71,7 +76,7 @@ export default function Edit({ params }){
   const handleSumbit = async (e)=>{
     e.preventDefault();
     if(categorie.name != initialCategorie.name || categorie.image != initialCategorie.image){
-                  const res = await axios.patch(`/api/categorie/updateCategorie?id=${id}&newName=${categorie.name}&newImage=${categorie.image}`)
+            const res = await axios.patch(`/api/categorie/updateCategorie?id=${id}&newName=${categorie.name}&newImage=${categorie.image}`)
             .then((response)=>{
                if(response.data.success === true){
                router.back();
@@ -83,29 +88,50 @@ export default function Edit({ params }){
                 console.log(err);
             })
     }
+    else{
+        router.back();
+    }
   }
 
 
 
 
      return(
-        <div>
+        <div style={{width:"100%",padding:"20px"}}>
          {categorie === null ? "" :
          <>
-         
-         <form onSubmit={(e)=>handleSumbit(e)}>
-         <label>Categorie Name : </label>
-         <input onChange={(e)=>setCategorie((prev)=>({...prev,name:e.target.value}))} value={categorie.name} id="categorieName"></input>
+         <div style={{display:"flex",justifyContent:"space-between"}}>
+         <Breadcrumbs aria-label="breadcrumb">
+        <Link underline="hover" color="inherit" href="/admin">
+          Dashboard
+        </Link>
+        <Link underline="hover" color="inherit" href={"/admin/" + gender}>
+          {gender}
+        </Link>
+        <Link underline="hover" color="inherit" href={"/admin/" + gender + "/categorie/" + id}>
+          {categorie.name}
+        </Link>
+        <Typography color="text.primary">Edit</Typography>
+      </Breadcrumbs>
+      <Button onClick={(e)=>handleDelete(e)} variant="outlined" startIcon={<DeleteIcon />}>
+        Delete
+      </Button>
+      </div>
+         <form style={{marginTop:"40px",height:"80vh",position:"relative"}} onSubmit={(e)=>handleSumbit(e)}>
+         <label style={{marginBottom:"15px"}}>Categorie Name : </label>
          <br></br>
-         <label>Categorie Image : </label>
-         <img src={categorie.image} style={{width:"100px",width:"100px"}}></img>
+         <input style={{width:"100%",height:"30px",marginBottom:"40px"}} onChange={(e)=>setCategorie((prev)=>({...prev,name:e.target.value}))} value={categorie.name} id="categorieName"></input>
          <br></br>
-         <label>Change Image : </label>
+         <label style={{marginBottom:"10px"}}>Categorie Image : </label>
+         <br></br>
+         <img src={categorie.image} style={{height:"200px",width:"auto",maxWidth:"200px"}}></img>
+         <br></br>
+         <label style={{marginTop:"20px"}}>Change Image : </label>
          <CldUploadButton onSuccess={(e)=>handleAddImage(e)} uploadPreset="jcejqihu" />   
          <br></br>
-         <button id="submitNewBtn" type="submit">Update</button>
+         <Button variant="contained" style={{position:"absolute",bottom:"10px",right:"45%"}} id="submitNewBtn" type="submit">Update</Button>
          </form>
-         <button onClick={(e)=>handleDelete(e)}>Delete Categorie</button>
+         {/* <button onClick={(e)=>handleDelete(e)}>Delete Categorie</button> */}
          </>
          }
         </div>
