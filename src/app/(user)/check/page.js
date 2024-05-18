@@ -39,7 +39,7 @@ export default function Check() {
                 <div className="fields fields--2">
                   <label className="field">
                     <span className="field__label" for="firstname">
-                      First name
+                      Full name
                     </span>
                     <input
                       className="field__input"
@@ -49,54 +49,55 @@ export default function Check() {
                   </label>
                   <label className="field">
                     <span className="field__label" for="lastname">
-                      Last name
+                      email
                     </span>
-                    <input className="field__input" type="text" id="lastname" />
+                    <input className="field__input" type="email" id="lastname" />
                   </label>
                 </div>
                 <label className="field">
                   <span className="field__label" for="address">
-                    Address
+                    Phone number
                   </span>
                   <input className="field__input" type="text" id="address" />
-                </label>
-                <label className="field">
-                  <span className="field__label" for="country">
-                    Country
-                  </span>
-                  <select className="field__input" id="country">
-                    <option value=""></option>
-                    <option value="unitedstates">United States</option>
-                  </select>
                 </label>
                 <div className="fields fields--3">
                   <label className="field">
                     <span className="field__label" for="zipcode">
-                      Zip code
+                      City
                     </span>
-                    <input className="field__input" type="text" id="zipcode" />
+                    <select className="field__input" id="state">
+                      <option value=""></option>
+                    </select>
                   </label>
                   <label className="field">
                     <span className="field__label" for="city">
-                      City
+                      District
                     </span>
-                    <input className="field__input" type="text" id="city" />
+                    <select className="field__input" id="state">
+                      <option value=""></option>
+                    </select>
                   </label>
                   <label className="field">
                     <span className="field__label" for="state">
-                      State
+                      Neighborhood
                     </span>
                     <select className="field__input" id="state">
                       <option value=""></option>
                     </select>
                   </label>
                 </div>
+                <label className="field">
+                  <span className="field__label" for="country">
+                    Address
+                  </span>
+                  <input className="field__input" type="text" id="lastname" />
+                </label>
               </div>
               <hr></hr>
             </div>
           </div>
 
-          <div className="container">
+          {/* <div className="container">
             {articles && options && (
               <Elements stripe={stripePromise} options={options}>
                 <CheckoutForm
@@ -105,10 +106,9 @@ export default function Check() {
                 />
               </Elements>
             )}
-          </div>
+          </div> */}
         </div>
 
-        {/* <div className="itemsDiv"> */}
             <div className="layout__sidebar -checkout">
               <div className="sidebar__content">
                    <div className="summary">
@@ -178,7 +178,6 @@ export default function Check() {
                    </div>
               </div>
 
-            {/* </div> */}
         </div>
       </div>
     </>
