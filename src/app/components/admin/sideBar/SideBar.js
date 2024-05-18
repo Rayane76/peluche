@@ -9,7 +9,8 @@ import { FaChild } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 
 
-export default function SideBar(){
+
+export default function SideBar(props){
 
 
     const pathname = usePathname();
@@ -27,14 +28,14 @@ export default function SideBar(){
 
 
     return(
-        <div className="sidebar">
+        <div className={"sidebar" + " " + props.class}>
              <div className="titleDiv">
                <h1 className="title">Admin</h1>
                </div>
                <ul className="ul">
       {menuItems.map((item) => (
         <li key={item.href}>
-          <a className={`tags ${pathname === item.href ? 'active' : ''}`} href={item.href}>
+          <a className={`tags ${(pathname.includes(item.href) && item.href != "/admin") ? 'active' : ''}`} href={item.href}>
             {item.icon}
             {item.label}
           </a>

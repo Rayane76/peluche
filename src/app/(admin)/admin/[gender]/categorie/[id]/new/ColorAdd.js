@@ -215,9 +215,11 @@ export default function ColorAdd({ onValueChange }){
 
     return(
         
-        <div className='border border-dark p-4 w-25'>
-        <label>Color Name : </label>
-        <input onChange={(e)=>setColor((prev)=>({...prev,[e.target.name]:e.target.value}))} value={color.name} type="text" name="name"></input>
+        <div className='border border-dark p-4 w-full'>
+        <label style={{marginBottom:"10px"}}>Color Name : </label>
+        <input style={{width:"100%",height:"40px"}} onChange={(e)=>setColor((prev)=>({...prev,[e.target.name]:e.target.value}))} value={color.name} type="text" name="name"></input>
+        <p style={{margin:"0"}}>Please choose a name that exists in this link and write it exactly the same as it is in the website : <a target='blank' href='https://developer.mozilla.org/en-US/docs/Web/CSS/named-color'>Color names</a></p>
+
         <br></br>
         <div className='d-flex align-items-center'>
         <label>Color Sizes : </label>
@@ -237,13 +239,14 @@ export default function ColorAdd({ onValueChange }){
       </FormControl>
     </Box>
     </div>
+    <br></br>
     {   typeSize !== "manually" ? 
         
     <>
       {color.sizes.map((size,index)=>{
         return(
-        <div key={index} className='d-flex'>
-        <label>{size.name} : </label>
+        <div key={index} className='d-flex mb-4'>
+        <label className='me-4'>{size.name} : </label>
         <input type='number' onChange={(e)=>handleChangeSize(e,size.name)} name={size.name}></input>
       </div>       
         )                         
@@ -253,17 +256,17 @@ export default function ColorAdd({ onValueChange }){
       :
       typeSize === "manually" ?
       <>
-        <div className='d-flex align-items-center'>
-        <label>Add size name : </label>
-        <input onChange={(e)=>setSizeEnteredName(e.target.value)} value={sizeEnteredName} type='text'></input>
-        <button onClick={(e)=>handleAddSizeName(e)}>+</button>
+        <div className='d-flex align-items-center mb-4'>
+        <label className='me-2'>Add size name : </label>
+        <input className='me-2' onChange={(e)=>setSizeEnteredName(e.target.value)} value={sizeEnteredName} type='text'></input>
+        <button className='btn btn-success' onClick={(e)=>handleAddSizeName(e)}>+</button>
         </div>
         {color.sizes.length === 0 ? "" 
         : (
                 color.sizes.map((size, index) => {
                     return(
-                    <div key={index} className='d-flex align-items-center'>
-                   <label>{size.name} : </label>
+                    <div key={index} className='d-flex align-items-center mb-4'>
+                   <label className='me-4'>{size.name} : </label>
                    <input onChange={(e)=>handleChangeSize(e,size.name)} type='number' name={size.name}></input>
                     </div>
                     )
@@ -273,11 +276,22 @@ export default function ColorAdd({ onValueChange }){
       : ""
     }
         <div>
-         <label>Add Images : </label>   
-         <CldUploadButton onSuccess={(e)=>handleSuccess(e)} uploadPreset="jcejqihu" />        
+         <label className='me-2'>Add Images : </label>   
+         <CldUploadButton className='btn btn-secondary' onSuccess={(e)=>handleSuccess(e)} uploadPreset="jcejqihu" />        
 
         </div>
-        <button onClick={(e)=>handleSubmitColor(e)}>Submit Color</button>
+        {color.images.length > 0 && 
+        <div className='d-flex gap-4'>
+           {color.images.map((image,index)=>{
+            return(
+                <img key={index} style={{height:"100px",width:"auto",maxWidth:"150px"}} src={image}></img>
+            )
+           })}
+        </div>
+        }
+        <div className='d-flex justify-content-center mt-4'>
+        <button className='btn btn-dark' onClick={(e)=>handleSubmitColor(e)}>Submit Color</button>
+        </div>
         </div>
     )
 }

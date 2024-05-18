@@ -10,4 +10,14 @@
     .allCats{
         justify-content: center;
     }
+    .linkSize{
+        font-size: 10px;
+    }
+}
+
+.dv{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
 }

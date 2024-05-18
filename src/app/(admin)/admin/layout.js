@@ -1,5 +1,7 @@
+import NavAdmin from "@/app/components/admin/navbar/NavAdmin";
 import SideBar from "@/app/components/admin/sideBar/SideBar"
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../../styles/admin/layout.css"
 
 
 export const metadata = {
@@ -13,7 +15,8 @@ export default function RootLayout({ children }) {
     
       <body style={{margin:"0"}}>
       <div style={{display:"flex"}}>
-        <SideBar />
+        <NavAdmin />
+        <SideBar class="lytSide" />
       {children}
       </div>
       </body>

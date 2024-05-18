@@ -18,7 +18,7 @@ export default async function Gender({ params }) {
   const categories = await getCategories(gender);
 
   return (
-    <div style={{ width: "100%", padding: "20px" }}>
+    <div style={{ width: "100%", padding: "40px",marginTop:"20px" }}>
       <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" href="/admin">
           Dashboard

@@ -21,7 +21,7 @@ export default async function SpecCategorie({ params }){
     const categorie = await getCategorie(id)
 
     return(
-       <div style={{width:"100%",padding:"20px"}}>
+       <div style={{width:"100%", padding: "40px",marginTop:"20px" }}>
         <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" href="/admin">
           Dashboard
@@ -31,7 +31,7 @@ export default async function SpecCategorie({ params }){
         </Link>
         <Typography color="text.primary">{categorie.name}</Typography>
       </Breadcrumbs>
-         <div style={{display:"flex",justifyContent:"space-between"}}>
+         <div style={{display:"flex",justifyContent:"space-between",marginTop:"20px"}}>
          <a  href={"/admin/" + gender + "/categorie/" + id + "/edit"}>Edit Categorie Informations</a>
          <a href={"/admin/" + gender + "/categorie/" + id + "/new"}>Add Article</a>
          </div>

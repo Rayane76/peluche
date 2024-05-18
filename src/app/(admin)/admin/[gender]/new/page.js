@@ -49,7 +49,7 @@ export default function New({ params }){
 
 
     return(
-        <div style={{ width: "100%", padding: "20px" }}>
+        <div style={{ width: "100%",  padding: "40px",marginTop:"20px"  }}>
         <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" href="/admin">
           Dashboard
