@@ -5,6 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "../../components/checkout/CheckoutForm";
 import { useEffect, useState } from "react";
 import "../../styles/check.css";
+import { getCities , getDistrictsByCityCode , getNeighbourhoodsByCityCodeAndDistrict } from "turkey-neighbourhoods";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -12,10 +13,26 @@ const stripePromise = loadStripe(
 
 export default function Check() {
   const [articles, setArticles] = useState(null);
+  const [citySelected,setCitySelected] = useState(null);
+  const [districts,setDistricts] = useState(null);
+  const [neighborhood,setNeighborhood] = useState(null);
+  const [order,setOrder] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    city: "",
+    district: "",
+    neighborhood: "",
+    address: "",
+    articles: [],
+    total: "",
+    status: "Waiting"
+  })
 
   useEffect(() => {
     const lcl = localStorage.getItem("article");
     setArticles(JSON.parse(lcl));
+    setOrder((prev)=>({...prev,articles:JSON.parse(lcl).articles,total:JSON.parse(lcl).price}));
   }, []);
 
   const options = articles
@@ -26,6 +43,24 @@ export default function Check() {
       }
     : null;
 
+    const cities = getCities();
+
+    const handleCity = (e)=>{
+      setOrder((prev)=>({...prev,[e.target.name]:e.target.value,district:"",neighborhood:""}))
+      const dst = getDistrictsByCityCode(e.target.value);
+      setDistricts(dst);
+    }
+
+    const handleDistrict = (e)=>{
+      setOrder((prev)=>({...prev,[e.target.name]:e.target.value,neighborhood:""}))
+      const nbgh = getNeighbourhoodsByCityCodeAndDistrict(order.city,e.target.value)
+      setNeighborhood(nbgh);
+    }
+
+    const handleSumbit = (e)=>{
+      e.preventDefault();
+    }
+
   return (
     <>
       <div className="checkoutDiv">
@@ -35,64 +70,100 @@ export default function Check() {
               <h1>Shipping</h1>
               <p>Please enter your shipping details.</p>
               <hr />
-              <div className="form">
+              <form onSubmit={(e)=>handleSumbit(e)} className="form">
                 <div className="fields fields--2">
                   <label className="field">
-                    <span className="field__label" for="firstname">
+                    <span className="field__label" htmlFor="firstname">
                       Full name
                     </span>
                     <input
                       className="field__input"
                       type="text"
+                      required
                       id="firstname"
+                      name="fullName"
+                      onChange={(e)=>setOrder((prev)=>({...prev,[e.target.name]:e.target.value}))}
                     />
                   </label>
                   <label className="field">
-                    <span className="field__label" for="lastname">
+                    <span className="field__label" htmlFor="lastname">
                       email
                     </span>
-                    <input className="field__input" type="email" id="lastname" />
+                    <input required name="email" className="field__input" type="email" id="lastname"
+                     onChange={(e)=>setOrder((prev)=>({...prev,[e.target.name]:e.target.value}))}
+                     />
                   </label>
                 </div>
                 <label className="field">
-                  <span className="field__label" for="address">
+                  <span className="field__label" htmlFor="address">
                     Phone number
                   </span>
-                  <input className="field__input" type="text" id="address" />
+                  <input required name="phone" className="field__input" type="text" id="address" 
+                    onChange={(e)=>setOrder((prev)=>({...prev,[e.target.name]:e.target.value}))}
+
+                  />
                 </label>
                 <div className="fields fields--3">
                   <label className="field">
-                    <span className="field__label" for="zipcode">
+                    <span className="field__label" htmlFor="zipcode">
                       City
                     </span>
-                    <select className="field__input" id="state">
-                      <option value=""></option>
+                    <select required name="city" onChange={(e)=>handleCity(e)} className="field__input" id="state">
+                      <option hidden value=""></option>
+                      {cities === undefined ? "" : cities.map((city,key)=>{
+                        return(
+                          <option key={key} value={city.code}>{city.name}</option>
+                        )
+                      })}
+                      
                     </select>
                   </label>
                   <label className="field">
-                    <span className="field__label" for="city">
+                    <span className="field__label" htmlFor="city">
                       District
                     </span>
-                    <select className="field__input" id="state">
-                      <option value=""></option>
+                    <select required name="district" onChange={(e)=>handleDistrict(e)} value={order.district} className="field__input" id="state">
+                    <option hidden value=""></option>
+                     {districts === null ? "" :
+                      districts.map((district,index)=>{
+                        return(
+                          <option key={index} value={district}>{district}</option>
+                        )
+                      })
+                      
+                     }
                     </select>
                   </label>
                   <label className="field">
-                    <span className="field__label" for="state">
+                    <span className="field__label" htmlFor="state">
                       Neighborhood
                     </span>
-                    <select className="field__input" id="state">
-                      <option value=""></option>
+                    <select required value={order.neighborhood} name="neighborhood" className="field__input" id="state"
+                     onChange={(e)=>setOrder((prev)=>({...prev,[e.target.name]:e.target.value}))}
+                    >
+                    <option hidden value=""></option>
+                     {neighborhood === null ? "" 
+                     :
+                     neighborhood.map((neighborhood,index)=>{
+                      return(
+                        <option key={index} value={neighborhood}>{neighborhood}</option>
+                      )
+                     })
+                     }
+      
                     </select>
                   </label>
                 </div>
                 <label className="field">
-                  <span className="field__label" for="country">
+                  <span className="field__label" htmlFor="country">
                     Address
                   </span>
-                  <input className="field__input" type="text" id="lastname" />
+                  <input required name="address" className="field__input" type="text" id="lastname"
+                    onChange={(e)=>setOrder((prev)=>({...prev,[e.target.name]:e.target.value}))}
+                   />
                 </label>
-              </div>
+                <button type="submit" className="btn btn-dark">Submit</button>
+              </form>
               <hr></hr>
             </div>
           </div>
