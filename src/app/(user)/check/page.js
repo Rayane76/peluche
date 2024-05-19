@@ -6,6 +6,7 @@ import CheckoutForm from "../../components/checkout/CheckoutForm";
 import { useEffect, useState } from "react";
 import "../../styles/check.css";
 import { getCities , getDistrictsByCityCode , getNeighbourhoodsByCityCodeAndDistrict } from "turkey-neighbourhoods";
+import { useRouter } from "next/navigation";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -28,6 +29,8 @@ export default function Check() {
     total: "",
     status: "Waiting"
   })
+
+  const router = useRouter();
 
   useEffect(() => {
     const lcl = localStorage.getItem("article");
@@ -57,8 +60,20 @@ export default function Check() {
       setNeighborhood(nbgh);
     }
 
-    const handleSumbit = (e)=>{
+    const handleSumbit = async (e)=>{
       e.preventDefault();
+      const res = await axios.post("/api/order/createOrder",{order: order})
+      .then((response)=>{
+        if(response.data.success === true){
+          console.log("success !")
+           router.push("/thankYou");
+        }
+        else{
+          console.log("Smthn went wrong")
+        }
+      }).catch((error)=>{
+        console.log(error)
+      })
     }
 
   return (
