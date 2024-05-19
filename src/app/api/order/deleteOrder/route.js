@@ -9,6 +9,10 @@ export async function POST(req){
     try {
         await connectToDB();
 
+        const {id} = await req.json();
+
+        const res = await Order.deleteOne({_id: id});
+
 
 
 
