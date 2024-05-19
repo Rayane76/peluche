@@ -47,10 +47,9 @@ export default function NewArrival(props){
         modules={[Navigation]}
         className="mySwiper"
       >
-       {props.newArrivals.map((article)=>{
+       {props.newArrivals.map((article,index)=>{
         return(
-          <>
-            <SwiperSlide>
+            <SwiperSlide key={index}>
                 <div className='newArrival'
                  onClick={()=>router.push("/articles/" + article._id)}
                   >
@@ -65,7 +64,6 @@ export default function NewArrival(props){
                     </p>
                 </div>
             </SwiperSlide>
-            </>
         )
        })}
       </Swiper>
