@@ -1,4 +1,4 @@
-
+import OrdersCmp from "@/app/components/admin/orders/OrdersCmp";
 
 
 async function getOrders(){
@@ -16,8 +16,6 @@ export default async function Orders(){
     const orders = await getOrders();
 
     return(
-        <div>
-            
-        </div>
+        <OrdersCmp orders={orders} />
     )
 }
