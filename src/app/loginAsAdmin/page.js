@@ -24,7 +24,6 @@ export default function Login(){
                 password: info.password,
                 redirect: false
             })
-             console.log(res);
             if(res.error){
                 console.log("invalid credentials")
             }

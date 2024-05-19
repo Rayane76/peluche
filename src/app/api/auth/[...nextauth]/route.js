@@ -1,14 +1,12 @@
 import nextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import axios from "axios";
 import Admin from "@/app/models/admin";
-import mongoose from "mongoose";
 import connectToDB from "@/app/database";
-import { NextResponse } from "next/server";
 import bcrypt from "bcrypt"
 
 async function login(credentials){
     try {
+        await connectToDB();
         const admin = await Admin.findOne({username: credentials.username});
         if(!admin){
           console.log("Wrond credentials")
@@ -64,7 +62,6 @@ export const authOptions = {
                 token.id = user.id,
                 token.username = user.username
             }
-            console.log("this is the token", token)
             return token;
         },
         async session({session,token}){
@@ -72,7 +69,6 @@ export const authOptions = {
                 session.user.username = token.username,
                 session.user.id = token.id
             }
-            console.log("this is the session" , session)
             return session;
         }
     }
