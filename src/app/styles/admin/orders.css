@@ -1,0 +1,8 @@
+.status-waiting {
+    background-color: white;
+  }
+  
+  .status-completed {
+    background-color: rgb(90, 231, 90);
+    color: white;
+  }

@@ -13,8 +13,11 @@ import Image from "next/image";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useState , useEffect } from 'react';
 import { MdDelete } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 export default function Navbar(props) {
+
+  const router = useRouter();
 
     let articles = [];
      props.allArticles.map((categorie)=>{
@@ -60,6 +63,22 @@ export default function Navbar(props) {
   const handleShowMenu = () => setShowMenu(true);
 
 
+  const handleClickBuyNow = () => {
+     let prc = 0;
+     articlesCart.map((article)=>{
+      prc = prc + article.priceTotal;
+     })
+
+     const articleToBuy = {price: prc, articles:articlesCart};
+
+     localStorage.setItem("article",JSON.stringify(articleToBuy));
+     
+     localStorage.removeItem("cart");
+
+     setShowCart(false);
+
+     router.push("/check");
+  }
 
   return (
     <div className="stickyNav">
@@ -145,7 +164,8 @@ export default function Navbar(props) {
                          <div className="summary__products">
                            {articlesCart === null ? "" : 
                            articlesCart.length === 0 ? "Cart is empty" :
-                            articlesCart.map((article,index)=>{
+                            <div>
+                            {articlesCart.map((article,index)=>{
                                 return(
                                     <div key={index} className="product">
                                <a className="product__area -image" href={"/articles/" + article.id}>
@@ -188,7 +208,11 @@ export default function Navbar(props) {
                                </div>
                             </div>
                                 )
-                            })
+                            })}
+                            <div style={{width:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                           <button onClick={()=>handleClickBuyNow()} className="btn btn-dark">Buy now</button>
+                            </div>
+                            </div>
                            }
                          </div>
                       </div>

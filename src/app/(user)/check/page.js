@@ -242,7 +242,7 @@ export default function Check() {
                                </div>
                                <div  className="product__area -prices">
                                <span className="product__price">
-                               {article.price} TL
+                               {article.price * article.quantity} TL
                                </span>
                                </div>
                             </div>

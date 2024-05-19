@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
+import "../../../styles/admin/orders.css"
 
 
 
@@ -54,6 +55,9 @@ export default function OrdersCmp({orders}){
             field: 'status',
             headerName: 'Status',
             width: 110,
+            getCellClassName: (params) => {
+              return params.value === 'completed' ? 'status-completed' : 'status-waiting';
+            }
           },
           {
             field: 'createdAt',
@@ -175,7 +179,7 @@ export default function OrdersCmp({orders}){
          <h6><span className='text-black fw-bold'>Articles :</span> </h6>
          {articles.articles.map((article,index)=>{
           return(
-              <div key={index} className='d-flex align-items-center border border-black pt-1'>
+              <div key={index} className='d-flex align-items-center border border-black pt-1 mb-2'>
                  <h6 className='me-2'><span className='text-black fw-bold'>Article :</span> {article.name}</h6>
                  <h6 className='me-2'><span className='text-black fw-bold'>Color :</span> {article.color}</h6>
                  <h6 className='me-2'><span className='text-black fw-bold'>Size : </span>{article.size}</h6>
