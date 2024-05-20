@@ -1,7 +1,5 @@
-import Link from "next/link";
 import "../../styles/admin/homeAdmin.css"
-import SideBar from "@/app/components/admin/sideBar/SideBar";
-
+import AdminHome from "@/app/components/admin/home/AdminHome"
 
 
 
@@ -10,8 +8,6 @@ export default function Admin(){
 
 
     return(
-        <>
-
-        </>
+        <AdminHome />
     )
 }
