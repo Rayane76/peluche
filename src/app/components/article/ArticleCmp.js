@@ -14,24 +14,9 @@ export default function ArticleCmp(props){
         <div className="product">
 
         <div className="product__header">
-          <a href={"/articles/" + props.id} className="product__imageWrapper">
+          <a href={"/articles/" + props.name + "/" + props.id} className="product__imageWrapper">
             <Image src={props.colors[0].images[0]} width={0} height={0} sizes="100vw" className="product__image lazy -loaded" />
         </a>
-
-        <div className="product__sizeContent">
-             <div className="product__sizeList">
-               {props.colors[0].sizes.map((size,index)=>{
-                return(
-                  <div key={index} className="product__sizeItem">
-                  {size.stock === 0 ? <button disabled className="product__sizeButton">{size.name.toUpperCase()}</button>
-                  :
-                  <button className="product__sizeButton">{size.name.toUpperCase()}</button>
-                  }
-                  </div>
-                )
-               })}
-             </div>
-        </div>
         </div>
 
 

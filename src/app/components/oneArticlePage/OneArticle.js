@@ -139,7 +139,7 @@ svgElement.dispatchEvent(event);
 
 
   return (
-    <Container>
+    <Container style={{marginBottom:"150px"}}>
       <Row>
         <Col className="col-lg-8 col-12 product-images-area">
           <div className="product-images -desktop">
@@ -263,9 +263,6 @@ svgElement.dispatchEvent(event);
           </div>
           </div>
         </Col>
-        <div style={{height:"50vh"}}>
-
-        </div>
       </Row>
     </Container>
   );

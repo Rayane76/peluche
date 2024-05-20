@@ -24,7 +24,7 @@ export default function NewArrival(props){
     return(
         <section className='newArrivalsDiv'>
           <div className='d-flex justify-content-center align-items-center mb-4'>
-          <h1 style={{margin:0}}>New Arrivals</h1>
+          <h1 style={{marginBottom: "30px",marginTop:"50px"}}>New Arrivals</h1>
           </div>
            <Swiper
         spaceBetween={30}
@@ -51,7 +51,7 @@ export default function NewArrival(props){
         return(
             <SwiperSlide key={index}>
                 <div className='newArrival'
-                 onClick={()=>router.push("/articles/" + article._id)}
+                 onClick={()=>router.push("/articles/" + article.name + "/" + article._id)}
                   >
                    <div className='imgDiv'>
                     <Image src={article.colors[0].images[0]} width={0} height={0} sizes='100vw' className='newArrivalImage' alt={article.name} />

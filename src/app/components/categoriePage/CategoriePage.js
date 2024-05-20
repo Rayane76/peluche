@@ -59,7 +59,7 @@ export default function CategoriePage(props){
       renderInput={(params) => <TextField {...params} label="Color" />}
     />
       </div>
-        <Container>
+        <Container style={{marginBottom:"100px"}}>
         <div>
         <div className="row heroGrid">
          {props.articles.map((article,index)=>{

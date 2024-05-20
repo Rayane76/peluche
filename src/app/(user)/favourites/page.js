@@ -55,7 +55,7 @@ export default function Favourites(){
         <div className="product">
 
         <div className="product__header">
-          <a href={"/articles/" + article.id} className="product__imageWrapper">
+          <a href={"/articles/" + article.name + "/" + article.id} className="product__imageWrapper">
             <Image src={article.image} width={0} height={0} sizes="100vw" className="product__image lazy -loaded" />
         </a>
         </div>

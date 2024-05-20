@@ -33,7 +33,7 @@ export default async function Gender({ params }){
 
 
     return(
-        <section>
+        <section style={{marginBottom:"150px"}}>
              <Stack style={{marginLeft:"10%",marginTop:"20px",marginBottom:"50px",position:"sticky",zIndex:"100",top:"0"}} spacing={2}>
       <Breadcrumbs separator="›" aria-label="breadcrumb">
         {breadcrumbs}

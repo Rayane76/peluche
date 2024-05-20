@@ -168,7 +168,7 @@ export default function Navbar(props) {
                             {articlesCart.map((article,index)=>{
                                 return(
                                     <div key={index} className="product">
-                               <a className="product__area -image" href={"/articles/" + article.id}>
+                               <a className="product__area -image" href={"/articles/" + article.name + "/" + article.id}>
                                 <img className="articleImg" src={article.image} alt={article.name}></img>
                                </a>
                                <div className="product__area -content">

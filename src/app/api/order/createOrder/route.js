@@ -10,9 +10,6 @@ export async function POST(req){
         await connectToDB();
 
         const {order} = await req.json();
-        
-        const res = await Order.insertMany(order);
-
 
         order.articles.map(async (article)=>{
           let result = await Categorie.findOne({articles: { $elemMatch: { _id: article.id } }})
@@ -43,14 +40,22 @@ export async function POST(req){
                 message: "Size not found!",
               });
              }
+             if(size.stock < article.quantity){
+               
+              return NextResponse.json({
+                success: false,
+                message: "Ooops , we ran out of stock !",
+              });
+
+             }
 
              size.stock = size.stock - article.quantity;
 
              result.save();
-
-            }
           
-        )
+    })
+
+         const res = await Order.insertMany(order);
 
 
         return NextResponse.json({
