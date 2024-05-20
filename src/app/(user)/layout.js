@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/navbar/Navbar";
 import { Rubik } from "next/font/google";
+import Footer from "../components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default async function RootLayout({ children }) {
       <body className={rubik.className}>
       <Navbar allArticles={categories} />
       {children}
+      <Footer />
       </body>
     </html>
   );
