@@ -286,11 +286,17 @@ ol, ul {
 }
 }
 
+
+
 .srchMblDv{
     min-height: 100vh;
     height: auto;
     background-color: white;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px;
 }
 
 .srchNotActive{

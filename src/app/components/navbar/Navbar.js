@@ -14,15 +14,18 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useState , useEffect } from 'react';
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import ArticleCmp from "../article/ArticleCmp";
 
 export default function Navbar(props) {
 
   const router = useRouter();
 
     let articles = [];
+    let artcVf = [];
      props.allArticles.map((categorie)=>{
         categorie.articles.map((article)=>{
-            articles.push({gender: categorie.gender , categorie: categorie.name, name: article. name,image: article.colors[0].images[0], price: article.price, id: article._id});
+            articles.push({gender: categorie.gender , colors: article.colors, categorie: categorie.name, name: article. name,image: article.colors[0].images[0], price: article.price, id: article._id});
+            artcVf.push({gender: categorie.gender , colors: article.colors, categorie: categorie.name, name: article. name,image: article.colors[0].images[0], price: article.price, id: article._id});
         })
      })
     
@@ -90,6 +93,49 @@ export default function Navbar(props) {
     document.getElementById("row2").classList.toggle("srchNotActive");
   }
 
+  const [searchMobile,setSearchMobile] = useState("");
+
+  function checkLetters(srch, name) {
+    let nm = 0;
+    for (let i = 0; i < srch.length; i++) {
+        if (name.includes(srch[i])) {
+            nm = nm + 1;
+        }
+    }
+    if(nm > 3 && ((srch.length)/2) < name.length ){
+      return true;
+    }
+    else{
+    return false;
+    }
+}
+
+const filterAndSortArticles = (articles, searchMobile) => {
+  const condition1 = articles.filter(article =>
+      article.name[0].toLowerCase() === searchMobile[0].toLowerCase()
+  );
+
+  const condition2 = articles.filter(article =>
+      article.name.toLowerCase().includes(searchMobile.toLowerCase())
+  );
+
+  const condition3 = articles.filter(article =>
+      checkLetters(searchMobile.toLowerCase(), article.name.toLowerCase())
+  );
+
+  // Concatenate the unique articles from each condition
+  const allArticles = [
+      ...condition1,
+      ...condition2.filter(article => !condition1.includes(article)),
+      ...condition3.filter(article => !condition1.includes(article) && !condition2.includes(article))
+  ];
+
+  // Map the concatenated result to the components
+  return allArticles.map((article, index) => (
+      <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+  ));
+};
+
   return (
     <>
     <div className="stickyNav">
@@ -146,19 +192,19 @@ export default function Navbar(props) {
             </Row>
             <Row id="row2" className="srchNotActive">
             <Col className="d-flex justify-content-between align-items-center">
-            <form className="formMbl">
+            <div className="formMbl">
       <button>
           <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" ariaLabelledby="search">
               <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" strokeWidth="1.333" strokeLinecap="round" strokeLinejoin="round"></path>
           </svg>
       </button>
-      <input className="inputMbl" placeholder="Search" required="" type="text" />
-      <button className="reset" type="reset">
+      <input className="inputMbl" value={searchMobile} onChange={(e)=>setSearchMobile(e.target.value)} placeholder="Search" required="" type="text" />
+      <button className="reset" type="reset" onClick={(e)=>setSearchMobile("")}>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
       </button>
-  </form>
+  </div>
 
   <button className="cancelMbl" onClick={()=>handleMobileSearch()}>
     Cancel
@@ -285,7 +331,20 @@ export default function Navbar(props) {
         </Offcanvas>
     </div>
     <div id="searchMobileDiv" className="srchMblDv srchNotActive">
-
+         {articles.length === 0 ? "" 
+         :
+         searchMobile === "" ? "" :
+         searchMobile.length === 1 ?
+         articles.map((article,index)=>{
+          if(article.name[0].toLowerCase() === searchMobile[0].toLowerCase()){
+          return(
+            <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+          )
+          }
+         })
+         : 
+         filterAndSortArticles(articles,searchMobile)
+         }
     </div>
     </>
   );
