@@ -286,6 +286,17 @@ ol, ul {
 }
 }
 
+.srchMblDv{
+    min-height: 100vh;
+    height: auto;
+    background-color: white;
+    width: 100%;
+}
+
+.srchNotActive{
+    display: none !important;
+}
+
 
 @media screen and (max-width: 992px) {
     .navbar{
@@ -330,4 +341,99 @@ ol, ul {
 
 .menu{
     padding: 0;
+}
+
+
+
+/* From uiverse.io by @satyamchaudharydev */
+/* removing default style of button */
+
+.formMbl button {
+  border: none;
+  background: none;
+  color: #8b8ba7;
+}
+/* styling of whole input container */
+.formMbl {
+  --timing: 0.3s;
+  --width-of-input: 75%;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #f5f5f5;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg,#f5f5f5);
+}
+/* styling of Input */
+.inputMbl {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+/* styling of animated border */
+.formMbl:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+/* Hover on Input */
+.formMbl:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+.inputMbl:focus {
+  outline: none;
+}
+/* here is code of animated border */
+.formMbl:focus-within:before {
+  transform: scale(1);
+}
+/* styling of close button */
+/* == you can click the close button to remove text == */
+.reset {
+  border: none;
+  background: none;
+  opacity: 0;
+  visibility: hidden;
+}
+/* close button shown when typing */
+.inputMbl:not(:placeholder-shown) ~ .reset {
+  opacity: 1;
+  visibility: visible;
+}
+/* sizing svg icons */
+.formMbl svg {
+  width: 17px;
+  margin-top: 3px;
+}
+
+.cancelMbl{
+    border: none;
+    background: none;
+    font-weight: 500;
+}
+
+.cancelMbl:hover{
+    color: gray;
 }

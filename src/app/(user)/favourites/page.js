@@ -42,7 +42,7 @@ export default function Favourites(){
       </Breadcrumbs>
       </Stack>
       </div>
-      <Container>
+      <Container style={{minHeight:"50vh"}}>
         <div>
         <div className="row heroGrid">
         {articles === null ? "" : 
