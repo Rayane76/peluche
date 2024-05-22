@@ -1,5 +1,11 @@
 import CategoriePage from "@/app/components/categoriePage/CategoriePage";
 
+
+
+export const metadata = {
+  title: "New Arrivals",
+};
+
 async function getNewArrivals(){
     const res = await import("../../api/product/getLastProducts/route");
   

@@ -1,17 +1,26 @@
 import OneArticle from "@/app/components/oneArticlePage/OneArticle";
-import axios from "axios";
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Typography } from "@mui/material";
 import Link from '@mui/material/Link';
 import "../../../../styles/catPage.css"
 import Stack from '@mui/material/Stack';
 
+export async function generateMetadata({ params }){
+  const article = await fetch(`http://localhost:3000/api/product/getProduct?article=${params.id}`)
+
+  const res = await article.json();
+
+  return {
+    title: res.data.name
+  }
+}
+
 
 
 async function getArticle(id){
-   const article = await axios.get(`http://localhost:3000/api/product/getProduct?article=${id}`)
+   const article = await fetch(`http://localhost:3000/api/product/getProduct?article=${id}`)
 
-   return article.data.data;
+   return article.json();
 }
 
 
@@ -26,7 +35,7 @@ export default async function Article({ params }){
           Home
         </Link>,
         <Typography key="3" color="text.primary">
-          {article.name}
+          {article.data.name}
         </Typography>,
       ];
 
@@ -39,7 +48,7 @@ export default async function Article({ params }){
       </Breadcrumbs>
       </Stack>
       </div>
-        <OneArticle article={article} id={id} />
+        <OneArticle article={article.data} id={id} />
         </>
     )
 }

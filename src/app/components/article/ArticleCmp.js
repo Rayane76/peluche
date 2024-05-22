@@ -20,7 +20,7 @@ export default function ArticleCmp(props){
         </div>
 
 
-        <div className="product__content">
+        <div className="product__content1">
             <div className="product__contentHeader">
               <h3 className="product__title h5">{props.name}</h3>
             </div>

@@ -411,6 +411,8 @@ h2, .h2 {
     .product__sizes {
         display: none;
     }
+
+    
     .product__sizes.-mobileShow .overlay {
         position: fixed;
         top: -100px;
@@ -436,17 +438,6 @@ h2, .h2 {
         margin-bottom: 0;
         background-color: #fafafa;
     }
-    .product__content.-sizes:not(.-stockReminder) {
-        max-height: 14.6875rem;
-        overflow-y: scroll;
-        padding: 0;
-        border: none;
-        display: block;
-    }
-    .product__size:not(.-stockReminder) {
-        margin: 0 1.25rem;
-        border-bottom: 0.0625rem solid #eaeaea;
-    }
     .product__buttons {
         position: fixed;
         z-index: 4;
@@ -457,20 +448,20 @@ h2, .h2 {
         padding: .625rem 1.25rem .9375rem 1.25rem;
         border-top: 0.0625rem solid #eaeaea;
     }
+    .product__content.-sizes{
+        flex-direction: column;
+        align-items: start;
+    }
     .product__button.-addToCart {
         flex: 3;
     }
-    .product__size:not(.-stockReminder) .radio-box__label {
-        font-family: "TTNormsPro-Medium";
-        padding: .9375rem 1.25rem;
-        text-align: left;
-        line-height: 1;
-        width: calc(100% + 40px);
-        display: block;
-        margin-left: -1.25rem;
+    .product__size{
+        width: 100%;
     }
-    .product__size .radio-box__label {
-        font-size: .875rem;
+    .radio-box__label{
+        width: 100%;
+        text-align: start !important;
+        font-size: 15px !important;
     }
     .product-images.-mobile #mobile-images-carousel {
         height: 100%;

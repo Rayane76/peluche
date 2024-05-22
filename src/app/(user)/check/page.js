@@ -8,6 +8,12 @@ import "../../styles/check.css";
 import { getCities , getDistrictsByCityCode , getNeighbourhoodsByCityCodeAndDistrict } from "turkey-neighbourhoods";
 import { useRouter } from "next/navigation";
 
+
+export const metadata = {
+  title: "Checkout",
+};
+
+
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );

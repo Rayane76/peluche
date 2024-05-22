@@ -7,6 +7,13 @@ import "../../styles/categories.css"
 import Image from 'next/image';
 
 
+export async function generateMetadata({ params }){
+   return {
+    title: params.gender + " articles",
+   }
+}
+
+
 async function getCategories(gender){
     const res = await axios.get(`http://localhost:3000/api/categorie/getAllCategoriesName?gender=${gender}`)
   
