@@ -247,7 +247,7 @@ export default function ColorAdd({ onValueChange }){
         return(
         <div key={index} className='d-flex mb-4'>
         <label className='me-4'>{size.name} : </label>
-        <input type='number' onChange={(e)=>handleChangeSize(e,size.name)} name={size.name}></input>
+        <input style={{width:"125px"}} type='number' onChange={(e)=>handleChangeSize(e,size.name)} name={size.name}></input>
       </div>       
         )                         
       })}

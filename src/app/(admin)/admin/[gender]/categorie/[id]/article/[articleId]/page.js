@@ -189,7 +189,7 @@ export default function SpecArticle({ params }){
                     return(
                         <div key={i} className='d-flex mb-2'>
                        <label className="me-4">{size.name} : </label>
-                       <input onChange={(e)=>handleChangeSize(e,size.name,color._id)} type='number' name={size.name} value={size.stock}></input>
+                       <input style={{width:"125px"}} onChange={(e)=>handleChangeSize(e,size.name,color._id)} type='number' name={size.name} value={size.stock}></input>
                        </div>       
                     )
                  })}

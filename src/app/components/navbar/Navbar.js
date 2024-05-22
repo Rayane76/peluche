@@ -127,12 +127,14 @@ const filterAndSortArticles = (articles, searchMobile) => {
   const allArticles = [
       ...condition1,
       ...condition2.filter(article => !condition1.includes(article)),
-      ...condition3.filter(article => !condition1.includes(article) && !condition2.includes(article))
+      ...condition3.filter(article => !condition1.includes(article) && !condition2.includes(article)),
   ];
+
+  console.log(allArticles);
 
   // Map the concatenated result to the components
   return allArticles.map((article, index) => (
-      <ArticleCmp key={index} id={article._id} name={article.name} colors={article.colors} price={article.price} />
+      <ArticleCmp key={index} id={article.id} name={article.name} colors={article.colors} price={article.price} />
   ));
 };
 
@@ -147,7 +149,7 @@ const filterAndSortArticles = (articles, searchMobile) => {
                 <div className="new-header__area -left">
                   <HiMenuAlt2 onClick={()=>handleShowMenu()} className="new-header__button -menu mlNav--trigger" />
                   <CiSearch onClick={()=>handleMobileSearch()} className="new-header__button -search js-search-trigger"></CiSearch>
-                  <form className="new-header__search">
+                  <form onSubmit={(e)=>e.preventDefault()} className="new-header__search">
                     <CiSearch className="new-header__icon -search"></CiSearch>
                     <Autocomplete
                       id="search"

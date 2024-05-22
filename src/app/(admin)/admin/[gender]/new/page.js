@@ -71,7 +71,9 @@ export default function New({ params }){
         <CldUploadButton className="btn btn-secondary" required onSuccess={(e)=>handleAddImage(e)} uploadPreset="jcejqihu" />
         <br></br>
         {categorieNew.image != "" && <img src={categorieNew.image} style={{height:"200px",width:"auto",maxWidth:"200px"}}></img>}
-        <Button variant="primary" style={{position:"absolute",bottom:"20px",right:"45%"}} type="submit">Submit</Button>
+        <div style={{display:"flex",justifyContent:"center",marginTop:"200px"}}>
+        <Button variant="primary" type="submit">Submit</Button>
+        </div>
         </form>
         </div>
     )
