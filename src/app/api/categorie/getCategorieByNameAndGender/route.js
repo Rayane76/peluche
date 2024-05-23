@@ -6,13 +6,14 @@ import Categorie from "@/app/models/categorie";
 
 
 export async function GET(req){
+
+    const searchParams = req.nextUrl.searchParams;
+
+    const name = searchParams.get("name");
+    const gender = searchParams.get("gender");
+
     try {
         await connectToDB();
-
-        const searchParams = req.nextUrl.searchParams;
-
-        const name = searchParams.get("name");
-        const gender = searchParams.get("gender");
 
         let result = {};
 
@@ -31,7 +32,7 @@ export async function GET(req){
 
 
     } catch (error) {
-        console.log(e);
+        console.log(error);
     
         return NextResponse.json({
           success: false,

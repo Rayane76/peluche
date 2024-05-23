@@ -8,12 +8,12 @@ import Categorie from "@/app/models/categorie";
 
 export async function DELETE(req){
 
+  const searchParams = req.nextUrl.searchParams;
+  const categorie = searchParams.get("categorie");
+  const article = searchParams.get("article");
+
     try {
         await connectToDB();
-   
-        const searchParams = req.nextUrl.searchParams;
-        const categorie = searchParams.get("categorie");
-        const article = searchParams.get("article");
 
         
 

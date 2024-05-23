@@ -12,8 +12,6 @@ export async function POST(req){
 
          const {id,newArticle} = await req.json();
 
-         console.log(newArticle)
-
          const result = await Categorie.findOneAndUpdate({_id: id}, { $push: { articles: newArticle  } });
         
         return NextResponse.json({

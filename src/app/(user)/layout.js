@@ -14,13 +14,6 @@ export const metadata = {
     template: "%s - Peluche"
   },
   description: "Homeslippers and Aquaslippers store",
-  openGraph: {
-    images: [
-      {
-        url: "../openGraph.png"
-      }
-    ]
-  }
 };
 
 async function getCategories(){

@@ -6,11 +6,14 @@ import Categorie from "@/app/models/categorie";
 
 
 export async function GET(req){
+
+  const searchParams = req.nextUrl.searchParams;
+  const article = searchParams.get("article");
+
+  
     try {
         await connectToDB();
-   
-        const searchParams = req.nextUrl.searchParams;
-        const article = searchParams.get("article");
+  
         
 
         const result = await Categorie.findOne({articles: { $elemMatch: {_id: article}}});
