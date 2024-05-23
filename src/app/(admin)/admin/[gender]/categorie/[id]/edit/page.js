@@ -28,7 +28,7 @@ export default function Edit({ params }){
      },[]);
  
      const getCategoriee = async () => {
-         const result = await axios.get(`/api/categorie/getCategorieName?id=${id}`);
+         const result = await axios.get(`${process.env.WEBSITE_URL}/api/categorie/getCategorieName?id=${id}`);
          setCategorie(result.data.data);
          setInitialCategorie(result.data.data);
      }

@@ -7,7 +7,7 @@ import Link from '@mui/material/Link';
 
 
 async function getCategorie(id){
-  const res = await axios.get(`http://localhost:3000/api/categorie/getCategorie?id=${id}`)
+  const res = await axios.get(`${process.env.WEBSITE_URL}/api/categorie/getCategorie?id=${id}`)
 
   return res.data.data;
 

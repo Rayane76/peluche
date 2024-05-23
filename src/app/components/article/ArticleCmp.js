@@ -2,7 +2,6 @@
 import Image from "next/image";
 import "../../styles/article.css"
 import { Col } from "react-bootstrap";
-import { MdFavoriteBorder } from "react-icons/md";
 
 
 

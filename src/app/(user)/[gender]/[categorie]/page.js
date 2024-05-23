@@ -8,7 +8,7 @@ export async function generateMetadata({ params }){
 }
 
 async function getCategorie(gender,name){
-    const res = await fetch(`http://localhost:3000/api/categorie/getCategorieByNameAndGender?gender=${gender}&name=${name}`)
+    const res = await fetch(`${process.env.WEBSITE_URL}/api/categorie/getCategorieByNameAndGender?gender=${gender}&name=${name}`)
 
     return res.json();
 }

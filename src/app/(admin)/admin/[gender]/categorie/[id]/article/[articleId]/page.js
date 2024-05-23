@@ -34,7 +34,7 @@ export default function SpecArticle({ params }){
      const [initialArticle,setInitialArticle] = useState(null);
     
      const getArticle = async () => {
-         const result = await axios.get(`/api/product/getProduct?categorie=${categorie}&article=${art}`);
+         const result = await axios.get(`${process.env.WEBSITE_URL}/api/product/getProduct?categorie=${categorie}&article=${art}`);
          setArticle(result.data.data);
          setInitialArticle(result.data.data);
      }

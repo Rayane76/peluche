@@ -6,7 +6,7 @@ import "../../../../styles/catPage.css"
 import Stack from '@mui/material/Stack';
 
 export async function generateMetadata({ params }){
-  const article = await fetch(`http://localhost:3000/api/product/getProduct?article=${params.id}`)
+  const article = await fetch(`${process.env.WEBSITE_URL}/api/product/getProduct?article=${params.id}`)
 
   const res = await article.json();
 
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }){
 
 
 async function getArticle(id){
-   const article = await fetch(`http://localhost:3000/api/product/getProduct?article=${id}`)
+   const article = await fetch(`${process.env.WEBSITE_URL}/api/product/getProduct?article=${id}`)
 
    return article.json();
 }

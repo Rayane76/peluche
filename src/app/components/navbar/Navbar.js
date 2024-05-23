@@ -21,11 +21,9 @@ export default function Navbar(props) {
   const router = useRouter();
 
     let articles = [];
-    let artcVf = [];
      props.allArticles.map((categorie)=>{
         categorie.articles.map((article)=>{
             articles.push({gender: categorie.gender , colors: article.colors, categorie: categorie.name, name: article. name,image: article.colors[0].images[0], price: article.price, id: article._id});
-            artcVf.push({gender: categorie.gender , colors: article.colors, categorie: categorie.name, name: article. name,image: article.colors[0].images[0], price: article.price, id: article._id});
         })
      })
     

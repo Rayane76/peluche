@@ -15,7 +15,7 @@ export async function generateMetadata({ params }){
 
 
 async function getCategories(gender){
-    const res = await axios.get(`http://localhost:3000/api/categorie/getAllCategoriesName?gender=${gender}`)
+    const res = await axios.get(`${process.env.WEBSITE_URL}/api/categorie/getAllCategoriesName?gender=${gender}`)
   
     return res.data.data;
 
