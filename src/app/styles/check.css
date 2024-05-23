@@ -121,7 +121,6 @@
 
 .summary .summaryItem.-total {
     font-size: 16px;
-    font-family: TTNormsPro-Medium;
     display: flex;
     justify-content: space-between;
 }
@@ -135,12 +134,10 @@
 }
 
 .-total .summaryItem__value {
-    font-family: TTNormsPro-DemiBold;
     font-weight: 600;
 }
 
 .summary .summaryItem__value {
-    font-family: TTNormsPro-Medium;
     font-weight: 500;
     white-space: nowrap;
 }
@@ -155,7 +152,6 @@
 .summary__products .product__price {
     display: block;
     color: #333;
-    font-family: TTNormsPro-Medium;
     font-size: 12px;
     line-height: 15px;
     text-align: right;
@@ -169,7 +165,6 @@
     grid-row-gap: 5px;
     margin-top: 20px;
     color: #333;
-    font-family: TTNormsPro-Regular;
     font-size: 12px;
     line-height: 15px;
 }
@@ -179,7 +174,6 @@
     max-width: 140px;
     overflow: hidden;
     color: #333;
-    font-family: TTNormsPro-Medium;
     font-size: 13px;
     font-weight: 400;
     line-height: 16px;

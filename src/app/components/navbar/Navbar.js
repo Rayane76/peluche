@@ -155,11 +155,13 @@ const filterAndSortArticles = (articles, searchMobile) => {
                       options={articles}
                       getOptionLabel={(option) => option.name}
                       renderOption={(props, option) => (
+                       <a href={"/articles/" + option.name + option.id}> 
                        <div className="searchDiv">
                        <h6 className="searchDivArtName">{option.name}</h6>
                        <h6 className="searchDivArtName">{option.price} TL</h6>
                        <Image src={option.image} height={50} width={50} />
                        </div>
+                       </a>
       )}
                       renderInput={(params) =>  <div ref={params.InputProps.ref}>
            <input
