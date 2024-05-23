@@ -210,7 +210,7 @@ h2, .h2 {
 }
 
 .product__label.-sizes {
-    font-size: 0.875rem;
+    font-size: 16px;
     color: #333;
     margin-bottom: .3125rem;
 }
@@ -358,7 +358,7 @@ h2, .h2 {
         flex: 1;
         display: flex;
         align-items: center;
-        font-size: .875rem;
+        font-size: 15px;
         color: #333;
     }
     .product-images.-desktop {
@@ -446,6 +446,9 @@ h2, .h2 {
     }
     .product__size{
         width: 100%;
+        border-style: none none solid none;
+        border-width: 0.2px;
+        border-color: rgb(225, 225, 225);
     }
     .radio-box__label{
         width: 100%;

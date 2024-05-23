@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import { IoIosHeartEmpty } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { IoIosArrowDown } from "react-icons/io";
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -92,20 +93,30 @@ svgElement.dispatchEvent(event);
   };
 
   const handleIncrement = (e) => {
+    if(size === "Size"){
+      const sizesOpen = document.getElementsByClassName("product__sizes");
+      sizesOpen[0].classList.toggle("-mobileShow");
+      setError("Choose your size !");
+    }
+    else{
     const selectedSize = color.sizes.find((s) => s.name === size);
     if(selectedSize && quantity < selectedSize.stock){
     e.preventDefault();
     setQuantity(quantity + 1);
     }
+  }
   };
 
-  const handleColor = (color) => {
-    setColor(color);
+  const handleColor = (colorSel) => {
+    if(color.name != colorSel.name){
+    setColor(colorSel);
     setSize("Size");
     const selected = document.getElementsByClassName("checked");
     if(selected[0] != undefined){        
     selected[0].classList.remove("checked")
     }
+    window.scrollTo(0,0)
+  }
   }
 
   const [isActive, setIsActive] = useState(false);
@@ -231,14 +242,14 @@ svgElement.dispatchEvent(event);
           </div>
             
           </div>
-          {size != "Size" && 
+          
           <div className="quantity-input mb-4">
           <span className="product__label -sizes">Select quantity : </span>
       <button className="quantity-btn" onClick={handleDecrement}>-</button>
       <span className="quantity">{quantity}</span>
       <button className="quantity-btn" onClick={handleIncrement}>+</button>
     </div>
-          }
+          
 
 
           <div className="product__shopTheLook">
@@ -250,7 +261,7 @@ svgElement.dispatchEvent(event);
 
           <div className="product__buttons -shopTheLook">
            <button onClick={()=>handleOpen()} className="product__button -selectSize">
-            {size}
+            {size} <IoIosArrowDown />
            </button>
            <div className="product__button -addToCart">
            <Button onClick={()=>handleBuy()} className="block2 lg" variant="dark">Buy now</Button>
